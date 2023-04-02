@@ -15,7 +15,7 @@ rm -rf build-script.sh
 
 mv dist/index.html index.html
 mv dist/vite.svg vite.svg
-mv build/assets/ assets
+mv dist/assets/ assets
 echo "Project builded"
 git branch -D build-branch
 git checkout -b build-branch
