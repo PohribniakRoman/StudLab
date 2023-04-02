@@ -1,7 +1,7 @@
-echo "Start building project"
-git branch -D build-branch
 
-git checkout -b build-branch
+rm -rf build/
+
+echo "Start building project"
 npm run build
 
 rm -rf public
@@ -16,8 +16,9 @@ rm -rf build-script.sh
 mv dist/index.html index.html
 mv dist/vite.svg vite.svg
 mv dist/assets assets
-
 echo "Project builded"
+git branch -D build-branch
+git checkout -b build-branch
 git add -A
 git commit -m "new build"
 git push -f origin build-branch
