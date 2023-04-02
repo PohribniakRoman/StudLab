@@ -6,11 +6,14 @@ export const Auth: React.FC = (): React.ReactElement => {
   return (
     <section className="auth">
       <input type="checkbox" checked={isChanged} className="auth__checkbox" />
-
       <div className="auth__container">
-        <button className="auth__btn-change">Увійти<span><BiLogIn /></span></button>
+        <div className="auth__container--circle-red"></div>
+        <div className="auth__container--circle-green"></div>
+        <button className="auth__btn-change" onClick={()=>{setChanged(!isChanged)}}>{!setChanged?"Увійти":"Зареєструватись"}<span><BiLogIn /></span></button>
+        <div className="auth__wrapper">
+          <h1 className="auth--logo">Stud<br/>Lab</h1>
+        </div>
       </div>
-      <div className="auth__wrapper"></div>
     </section>
   );
 };

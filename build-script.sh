@@ -20,7 +20,7 @@ echo "Project builded"
 git branch -D build-branch
 git checkout -b build-branch
 git add -A
-git commit -m "new build"
+git commit -m "new build --base=/my/public/path/"
 git push -f origin build-branch
 echo "Project is on git,back to main branch"
 git checkout main
