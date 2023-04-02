@@ -2,7 +2,7 @@
 rm -rf build/
 
 echo "Start building project"
-npm run build
+npm run build --base=/my/public/path/
 
 rm -rf public
 rm -rf src
@@ -20,7 +20,7 @@ echo "Project builded"
 git branch -D build-branch
 git checkout -b build-branch
 git add -A
-git commit -m "new build --base=/my/public/path/"
+git commit -m "new build"
 git push -f origin build-branch
 echo "Project is on git,back to main branch"
 git checkout main
