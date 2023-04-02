@@ -1,0 +1,25 @@
+.auth{
+    &__checkbox{
+        display: none;
+    }
+    &__checkbox:checked + &__container{
+        filter: hue-rotate(0.87turn);
+    }
+    &__container{
+        width: 100%;
+        min-height: 100vh;
+        transition: 1s;
+        filter: hue-rotate(0);
+        background: radial-gradient(circle, rgba(56,113,223,1) 0%, rgba(112,208,230,1) 25%, rgba(255,255,255,1) 70%);
+    }
+    &__btn-change{
+        @include button-sm;
+        position: absolute;
+        top: 20px;
+        right: 30px;
+    }
+    &__wrapper{
+
+    }
+}
+
