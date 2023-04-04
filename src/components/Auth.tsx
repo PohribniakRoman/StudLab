@@ -36,18 +36,7 @@ export const Auth: React.FC = (): React.ReactElement => {
               </div>
               <div className="auth__form--avatar-wrapper">
                 <label>
-                  <input type="file" className="auth__form--file-input" onChange={async (event)=>{
-                    const fileToBlob = async (file:File|null) => new Blob([new Uint8Array(await file?.arrayBuffer(file))], {type: file?.type });
-                    
-                    if(event.target.files?.item(0)){
-                      const file:File|null = event.target.files?.item(0);
-                      const reader = new FileReader();
-                      reader.readAsDataURL(await fileToBlob(file))
-                      const result = reader.result;
-                      setUrl(reader.result);
-                    }
-                    
-                  }} accept=".jpg, .jpeg, .png" />
+                  <input type="file" className="auth__form--file-input" accept=".jpg, .jpeg, .png" />
                   <div className="auth__form--avatar"style={{backgroundImage:`url(${url})`}}></div>
                 </label>
                 <h3 className="auth__form--title">Фото Профілю</h3>
