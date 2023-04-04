@@ -3,26 +3,47 @@
         display: none;
     }
     &__checkbox:checked + &__container{
-        filter: hue-rotate(0.87turn);
+        &::before{
+            filter: hue-rotate(0.87turn);
+        }
     }
     &__container{
         @include flex-center();
         width: 100%;
         min-height: 100vh;
-        transition: 1s;
-        filter: hue-rotate(0);
-        background: radial-gradient(circle, rgba(56,113,223,1) 0%, rgba(112,208,230,1) 25%, rgba(255,255,255,1) 70%);
+        &::before{
+            content: '';
+            transition: 1s;
+            position: absolute;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            top: 0;
+            z-index: -1;
+            filter: hue-rotate(0),blur(11px);
+            background:linear-gradient(106.54deg, rgba(206, 255, 205, 0.8) 3.61%, rgba(181, 255, 224, 0.8) 43.57%, rgba(208, 255, 246, 0.8) 71.69%, rgba(185, 238, 255, 0.8) 100%);
+        }
         &--circle{
             &-green,&-red{
-            position: absolute;   
+                position: absolute;   
+                filter: blur(129px);
+                z-index: -1;
             }
             &-red{
+                position: absolute;
+                width: 300px;
+                height: 300px;
                 top: 40%;
                 left: 40%;
+                background: rgb(95, 225, 254);
                 transform: translate(-50%,-50%);
             }
             &-green{
-
+                top: 50%;
+                left: 20%;
+                height: 420px;
+                width: 420px;
+                background: rgb(140, 255, 186);
             }
         }
     }
@@ -33,13 +54,78 @@
         right: 30px;
     }
     &__wrapper{
-
+        @include flex-center();
     }
     &--logo{
         text-align: right;
         font-size: 200px;
         font-weight: 700;
         line-height: 230px;
+        user-select: none;
+    }
+    &__form{
+        margin-left: 100px;
+        margin-right: -160px;  
+        min-width: 800px;
+        border-radius: 32px;
+        box-shadow: 4px 20px 35px 2px rgba(0, 0, 0, 0.15);
+        background: #CDF6FF;
+        @include flex-column-center();
+        user-select: none;
+        &--header{
+            padding: 20px;
+            cursor: context-menu;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 30px;
+        }
+        &--submit-container{
+            width: 90%;
+            @include flex();
+            justify-content: flex-end;
+        }
+        &--input-wrapper{
+            @include flex();
+            flex-direction: column;
+        }
+        &--submit{
+            @include button-xl-field();
+            margin: 50px;
+        }
+        &--container{
+            width: 80%;
+            @include flex();
+            justify-content: space-between;
+        }
+        &--title{
+            font-family: 'Montserrat Alternates';
+            font-weight: 500;
+            margin: 10px 15px;
+            font-size: 20px;
+        }
+        &--input{
+            margin-bottom: 15px;
+            @include form-input();
+            &-xl{
+                @include form-input();
+                width: 300px !important;
+            }
+        }
+        &--avatar{
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            margin-bottom: 20px;
+            background-size: cover;
+            cursor: pointer;
+            &-wrapper{
+                @include flex-column-center();
+            }
+        }
+        &--file-input{
+            display: none;
+        }
     }
 }
 
