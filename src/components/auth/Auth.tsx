@@ -1,12 +1,16 @@
 import * as React from "react";
 import { BiLogIn } from "react-icons/bi";
+import { useState } from "react";
+import Button from "../ui-components/Button";
+import SubHeader from "../ui-components/SubHeader";
+import AuthFormInput from "../ui-components/AuthFormInput";
 
 export const Auth: React.FC = (): React.ReactElement => {
-  const [isChanged, setChanged] = React.useState(false);
-  const [url,setUrl] = React.useState("");
+  const [isChanged, setChanged] = useState(false);
+  const [url,setUrl] = useState<string | ArrayBuffer | null>();
   return (
     <section className="auth">
-      <input type="checkbox" checked={isChanged} className="auth__checkbox" />
+      <input type="checkbox" checked={isChanged} onChange={(event=>{})} className="auth__checkbox" />
       <div className="auth__container">
         <div className="auth__container--circle-red"></div>
         <div className="auth__container--circle-green"></div>
@@ -18,32 +22,41 @@ export const Auth: React.FC = (): React.ReactElement => {
             <div className="auth__form--container">
               <div className="auth__form--input-wrapper">
                 <div className="auth__form--input-container">
-                    <h3 className="auth__form--title">Ім'я</h3>
-                    <input className="auth__form--input" required placeholder="Слава"/>
+                    <SubHeader title="Ім'я"/>
+                    <AuthFormInput placeholder="Слава"/>
                 </div>
                 <div className="auth__form--input-container">
-                    <h3 className="auth__form--title">Прізвище</h3>
-                    <input className="auth__form--input" required placeholder="Україні"/>
+                    <SubHeader title="Прізвище"/>
+                    <AuthFormInput placeholder="Україні"/>
                 </div>
                 <div className="auth__form--input-container">
-                    <h3 className="auth__form--title">Створіть Пароль</h3>
-                    <input className="auth__form--input-xl" required type="password" placeholder="Слава"/>
+                    <SubHeader title="Створіть Пароль"/>
+                    <AuthFormInput placeholder="Слава"/>
                 </div>
                 <div className="auth__form--input-container">
-                    <h3 className="auth__form--title">Підтвердіть Пароль</h3>
-                    <input className="auth__form--input-xl" required type="password" placeholder="Україні"/>
+                    <SubHeader title="Підтвердіть Пароль"/>
+                    <AuthFormInput placeholder="Україні"/>
                 </div>
               </div>
               <div className="auth__form--avatar-wrapper">
                 <label>
-                  <input type="file" className="auth__form--file-input" accept=".jpg, .jpeg, .png" />
+                  <input type="file" className="auth__form--file-input" accept=".jpg, .jpeg, .png" onChange={(event)=>{
+                      const file = event.target?.files?.item(0);
+                      if(file!==null && file){
+                          const reader = new FileReader();
+                          reader.onloadend = () =>{
+                              setUrl(reader.result);
+                          }
+                          reader.readAsDataURL(file);
+                      }
+                  }}/>
                   <div className="auth__form--avatar"style={{backgroundImage:`url(${url})`}}></div>
                 </label>
-                <h3 className="auth__form--title">Фото Профілю</h3>
+                  <SubHeader title="Фото Профілю"/>
               </div>
             </div>
             <div className="auth__form--submit-container">
-              <button type="submit" className="auth__form--submit"><i>Готово!</i></button>
+                <Button type="submit" title="Готово!"/>
             </div>
           </form>
         </div>
