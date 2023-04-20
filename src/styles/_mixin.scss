@@ -19,10 +19,8 @@
 }
 
 @mixin flex-column-center{
-    @include flex();
     @include flex-center();
     flex-direction: column;
-    justify-content: center;
 }
 
 
@@ -50,18 +48,20 @@
 
 @mixin button-sm-field{
     @include flex-center();
+    transition: .3s;
     user-select: none;
     cursor: pointer;
     outline: none;
-    padding: 10px 30px;
-    background-color: rgba($color: #000, $alpha: 1);
+    height: 50px;
+    width: 230px;
+    background: #E43050;
+    box-shadow: 0px 4px 6px rgba(206, 33, 64, 0.31);
+    border-radius: 17px;
     font-weight: bold;
     font-size: 16px;
-    border-radius: 36px;
     border: 0;
     font-family: 'Montserrat Alternates', sans-serif;
     & i{
-        text-shadow: 0px 0px 15px #FFFFFF;
         color: #FFFFFF;
     }
     & span{
@@ -72,6 +72,9 @@
         }
         color: black;
     }
+    &:active{
+        transform: scale(0.98);
+    }
 }
 
 @mixin button-xl-field{
@@ -81,13 +84,13 @@
 
 @mixin form-input{
     background: #FFFFFF;
-    border-radius: 36px;
     outline: none;
     border: none;
-    padding: 18px 20px;
-    min-width: 230px;
+    padding: 17px 0 17px 43px;
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
+    box-shadow: 0px 4px 34px -4px rgba(0,0,0, 0.25);
+    border-radius: 21px;
     &::placeholder{
         color:lightgray;
         font-family: 'Montserrat Alternates', sans-serif;

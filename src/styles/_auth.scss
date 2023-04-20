@@ -1,150 +1,216 @@
-.auth{
-    &__checkbox{
-        display: none;
+.auth {
+  &__checkbox {
+    display: none;
+  }
+  &__checkbox:checked ~ &__container {
+    &::before {
+      background: #ffffff;
+      filter: hue-rotate(0.87turn);
     }
-    &__checkbox:checked ~ &__container{
-        &::before{
-            background: #ffffff;
-            filter: hue-rotate(0.87turn);
-        }
-        & .auth__container--circle-red{
-            top: 30%;
-            background: #4CA892;
-            box-shadow: 0px 49px 44px -14px rgba(124, 71, 71, 0.25), inset 0px -63px 97px 28px #F2F2F2;
-            filter: blur(0);
-        }
-        & .auth__container--circle-green{
-            top: 40%;
-            background:#F9BDB0;
-            box-shadow: 0px 128px 70px -65px rgba(124, 71, 71, 0.2), inset 0px -47px 102px 34px #FFFFFF;
-            filter: blur(0);
-        }
+    & .auth__container--circle-red {
+      top: 30%;
+      background: #7EA0FF;
+      box-shadow: 0px 49px 44px -14px rgba(124, 71, 71, 0.25),
+        inset 0px -63px 97px 28px #f2f2f2;
+      filter: blur(0);
     }
-    &__container{
-        @include flex-center();
-        width: 100%;
-        min-height: 100vh;
-        &::before{
-            content: '';
-            transition: 1s;
-            position: absolute;
-            right: 0;
-            left: 0;
-            bottom: 0;
-            top: 0;
-            z-index: -1;
-            filter: hue-rotate(0) blur(11px);
-            background:linear-gradient(106.54deg, rgba(206, 255, 205, 0.8) 3.61%, rgba(181, 255, 224, 0.8) 43.57%, rgba(208, 255, 246, 0.8) 71.69%, rgba(185, 238, 255, 0.8) 100%);
-        }
-        &--circle{
-            &-green,&-red{
-                position: absolute;   
-                filter: blur(129px);
-                border-radius: 50%;
-                z-index: -1;
-                transition: 1s;
-            }
-            &-red{
-                min-width: 300px;
-                min-height: 300px;
-                position: absolute;
-                width: 30vh;
-                height: 30vh;
-                top: 40%;
-                left: 42%;
-                background: rgb(95, 225, 254);
-                transform: translate(-50%,-50%);
-            }
-            &-green{
-                min-width: 420px;
-                min-height: 420px;
-                top: 50%;
-                left: 13%;
-                height: 45vh;
-                width: 45vh;
-                background: rgb(140, 255, 186);
-            }
-        }
+    & .auth__container--circle-green {
+      top: 40%;
+      background: #FF99AB;
+      box-shadow: 0px 128px 70px -65px rgba(124, 71, 71, 0.2),
+        inset 0px -47px 102px 34px #ffffff;
+      filter: blur(0);
     }
-    &__btn-change{
-        @include button-sm;
+  }
+  &__container {
+    @include flex-center();
+    width: 100%;
+    min-height: 100vh;
+    &::before {
+      content: "";
+      transition: 1s;
+      position: absolute;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      top: 0;
+      z-index: -1;
+      filter: hue-rotate(0) blur(11px);
+      background: linear-gradient(106.54deg, rgba(205, 255, 231, 0.8) 3.61%, rgba(208, 235, 255, 0.8) 40.26%, rgba(181, 220, 255, 0.8) 69.88%, rgba(185, 192, 255, 0.8) 100%);
+    }
+    &--glass{
         position: absolute;
-        top: 20px;
-        right: 30px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        animation-name: slide;
+        animation-duration: 1.5s;
+        animation-iteration-count: 1;
+        width: 45%;
+        z-index: -1;
+        background: linear-gradient(90deg, #FFFFFF 66.98%, rgba(255, 255, 255, 0) 100%);
+        filter: blur(2px);
     }
-    &__wrapper{
-        @include flex-center();
+    &--circle {
+      &-green,
+      &-red {
+        position: absolute;
+        filter: blur(129px);
+        border-radius: 50%;
+        transition: 1s;
+      }
+      &-red {
+        min-width: 300px;
+        min-height: 300px;
+        position: absolute;
+        top: 40%;
+        left: 42%;      
+        background: #7EA0FF;
+        transform: translate(-50%, -50%);
+      }
+      &-green {
+        min-width: 420px;
+        min-height: 420px;
+        top: 50%;
+        left: 13%;
+        background: #FF99AB;
+      }
     }
-    &--logo{
-        text-align: right;
-        font-size: 200px;
-        font-weight: 700;
-        line-height: 230px;
-        user-select: none;
+  }
+  &__btn-change {
+    @include button-sm;
+    position: absolute;
+    top: 0;
+    height: 60px;
+    width: 200px;
+    @include flex-center();
+    border-bottom-left-radius: 34px;
+    border-bottom-right-radius: 34px;
+    background-color: #000;
+    & svg{
+        color: #fff;
     }
-    &__form{
-        margin-left: 100px;
-        margin-right: -160px;  
-        min-width: 800px;
-        border-radius: 32px;
-        box-shadow: 4px 20px 35px 2px rgba(0, 0, 0, 0.15);
-        background: #CDF6FF;
+    color: #fff;
+    right: 50px;
+  }
+  &__wrapper {
+    @include flex-center();
+  }
+  &--logo {
+    width: 500px;
+    text-align: right;
+    animation-name: appear;
+    animation-duration: 2.7s;
+    animation-iteration-count: 1;
+    font-size: 200px;
+    font-weight: 700;
+    line-height: 230px;
+    user-select: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+  &__form {
+    margin-left: 100px;
+    margin-right: -160px;
+    height: 450px;
+    width: 800px;
+    z-index: 1;
+    border-radius: 51px;
+    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.5);
+    user-select: none;
+    @include flex-center;
+    &--wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 80%;
+        height: 80%;
+    }
+    &--header {
+      padding: 20px;
+      cursor: context-menu;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      font-size: 30px;
+      & b{
+        font-weight: bold;
+        line-height: 35px;
+      }
+    }
+    &--submit-container {
+      width: 90%;
+      @include flex();
+      justify-content: flex-end;
+    }
+    &--input-wrapper {
+      @include flex();
+      flex-direction: column;
+    }
+    &--submit {
+      @include button-xl-field();
+    }
+    &--container {
+      width: 80%;
+      @include flex();
+      justify-content: space-between;
+    }
+    &--title {
+      font-family: "Montserrat Alternates";
+      font-weight: 500;
+      margin: 10px 15px;
+      font-size: 20px;
+    }
+    &--input {
+      margin-bottom: 15px;
+      @include form-input();
+      &-xl {
+        @include form-input();
+        width: 300px !important;
+      }
+    }
+    &--avatar {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: #ffffff;
+      margin-bottom: 20px;
+      background-size: cover;
+      cursor: pointer;
+      &-wrapper {
         @include flex-column-center();
-        user-select: none;
-        &--header{
-            padding: 20px;
-            cursor: context-menu;
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 30px;
-        }
-        &--submit-container{
-            width: 90%;
-            @include flex();
-            justify-content: flex-end;
-        }
-        &--input-wrapper{
-            @include flex();
-            flex-direction: column;
-        }
-        &--submit{
-            @include button-xl-field();
-            margin: 50px;
-        }
-        &--container{
-            width: 80%;
-            @include flex();
-            justify-content: space-between;
-        }
-        &--title{
-            font-family: 'Montserrat Alternates';
-            font-weight: 500;
-            margin: 10px 15px;
-            font-size: 20px;
-        }
-        &--input{
-            margin-bottom: 15px;
-            @include form-input();
-            &-xl{
-                @include form-input();
-                width: 300px !important;
-            }
-        }
-        &--avatar{
-            width: 230px;
-            height: 230px;
-            border-radius: 50%;
-            background: #FFFFFF;
-            margin-bottom: 20px;
-            background-size: cover;
-            cursor: pointer;
-            &-wrapper{
-                @include flex-column-center();
-            }
-        }
-        &--file-input{
-            display: none;
-        }
+      }
     }
+    &--file-input {
+      display: none;
+    }
+  }
+  &__watermark {
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+    font-size: 16px;
+    user-select: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+  }
 }
 
+@keyframes slide{
+    0%{
+        width: 0%;
+        opacity: 0;
+    }
+    100%{
+        width: 45%;
+        opacity: 1;
+    }
+}
+@keyframes appear{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
