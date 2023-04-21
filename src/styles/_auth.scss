@@ -1,4 +1,5 @@
 .auth {
+  overflow: hidden;
   &__checkbox {
     display: none;
   }
@@ -8,15 +9,21 @@
       filter: hue-rotate(0.87turn);
     }
     & .auth__container--circle-red {
+      animation-name: backgroundShow;
+      animation-duration: 1.5s;
+      animation-iteration-count: 1;
       top: 30%;
-      background: #7EA0FF;
+      background: #7ea0ff;
       box-shadow: 0px 49px 44px -14px rgba(124, 71, 71, 0.25),
         inset 0px -63px 97px 28px #f2f2f2;
       filter: blur(0);
     }
-    & .auth__container--circle-green {
+    & .auth__container--circle-green {     
+      animation-name: backgroundShow;
+      animation-duration: 1.5s;
+      animation-iteration-count: 1;
       top: 40%;
-      background: #FF99AB;
+      background: #ff99ab;
       box-shadow: 0px 128px 70px -65px rgba(124, 71, 71, 0.2),
         inset 0px -47px 102px 34px #ffffff;
       filter: blur(0);
@@ -35,22 +42,35 @@
       bottom: 0;
       top: 0;
       z-index: -1;
+      animation-name: backgroundShow;
+      animation-duration: 1.5s;
+      animation-iteration-count: 1;
       filter: hue-rotate(0) blur(11px);
-      background: linear-gradient(106.54deg, rgba(205, 255, 231, 0.8) 3.61%, rgba(208, 235, 255, 0.8) 40.26%, rgba(181, 220, 255, 0.8) 69.88%, rgba(185, 192, 255, 0.8) 100%);
+      background: linear-gradient(
+        106.54deg,
+        rgba(205, 255, 231, 0.8) 3.61%,
+        rgba(208, 235, 255, 0.8) 40.26%,
+        rgba(181, 220, 255, 0.8) 69.88%,
+        rgba(185, 192, 255, 0.8) 100%
+      );
     }
-    &--glass{
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        animation-name: slide;
-        animation-duration: 1.5s;
-        animation-iteration-count: 1;
-        width: 45%;
-        z-index: -1;
-        background: linear-gradient(90deg, #FFFFFF 66.98%, rgba(255, 255, 255, 0) 100%);
-        filter: blur(2px);
+    &--glass {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      animation-name: slide;
+      animation-duration: 1.5s;
+      animation-iteration-count: 1;
+      width: 45%;
+      z-index: -1;
+      background: linear-gradient(
+        90deg,
+        #ffffff 66.98%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      filter: blur(2px);
     }
     &--circle {
       &-green,
@@ -65,20 +85,29 @@
         min-height: 300px;
         position: absolute;
         top: 40%;
-        left: 42%;      
-        background: #7EA0FF;
+        left: 42%;
+        background: #7ea0ff;
         transform: translate(-50%, -50%);
+        animation-name: backgroundShow;
+        animation-duration: 1.5s;
+        animation-iteration-count: 1;
       }
       &-green {
+        animation-name: backgroundShow;
+        animation-duration: 1.5s;
+        animation-iteration-count: 1;
         min-width: 420px;
         min-height: 420px;
         top: 50%;
         left: 13%;
-        background: #FF99AB;
+        background: #ff99ab;
       }
     }
   }
   &__btn-change {
+    animation-name: badge;
+    animation-duration: 1.5s;
+    animation-iteration-count: 1;
     @include button-sm;
     position: absolute;
     top: 0;
@@ -88,8 +117,8 @@
     border-bottom-left-radius: 34px;
     border-bottom-right-radius: 34px;
     background-color: #000;
-    & svg{
-        color: #fff;
+    & svg {
+      color: #fff;
     }
     color: #fff;
     right: 50px;
@@ -115,25 +144,33 @@
     height: 450px;
     width: 800px;
     z-index: 1;
-    border-radius: 51px;
-    box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
-    background: rgba(255, 255, 255, 0.5);
-    user-select: none;
     @include flex-center;
-    &--wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        width: 80%;
-        height: 80%;
+    user-select: none;
+    &--container{
+      width: 100% !important;
+      height: 100%;
+      border-radius: 51px;
+      box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 0.5);
+      animation-name: formSlide;
+      animation-duration: 1.5s;
+      animation-iteration-count: 1;
+      @include flex-center;
+    }
+
+    &--wrapper {
+      @include flex-column-center;
+      width: 100%;
+      height: 100%;
     }
     &--header {
+      width: 75%;
       padding: 20px;
       cursor: context-menu;
       font-family: "Montserrat", sans-serif;
       font-weight: 500;
       font-size: 30px;
-      & b{
+      & b {
         font-weight: bold;
         line-height: 35px;
       }
@@ -196,21 +233,50 @@
   }
 }
 
-@keyframes slide{
-    0%{
-        width: 0%;
-        opacity: 0;
-    }
-    100%{
-        width: 45%;
-        opacity: 1;
-    }
+@keyframes slide {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 45%;
+    opacity: 1;
+  }
 }
-@keyframes appear{
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    }
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes formSlide {
+  0% {
+    transform:translateX(800px) ;
+    opacity: 0;
+  }
+  100% {
+    transform:translateX(0) ;
+    opacity: 1;
+  }
+}
+
+@keyframes badge{
+  0%{
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  100%{
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes backgroundShow{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
 }
