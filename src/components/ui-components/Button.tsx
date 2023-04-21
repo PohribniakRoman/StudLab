@@ -1,11 +1,7 @@
-import React, {ReactElement} from 'react';
+import React from 'react';
 
-type ButtonProps = Record<string, string>
-const Button:React.FC<ButtonProps> = (props):ReactElement => {
-    const title = props.title;
-    const myProps = JSON.parse(JSON.stringify(props));
-    delete myProps.title;
-    return (<button className="auth__form--submit" {...myProps}><i>{title}</i></button>);
+const Button:React.FC<any> = (props) => {
+    return (<button className={props.variant === "field"?"submit-field":"submit"} {...props}><i>{props.title}</i></button>);
 };
 
 

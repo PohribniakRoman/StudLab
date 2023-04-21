@@ -1,10 +1,8 @@
 import React, {ReactElement} from 'react';
 
 
-type AuthFormInputProps = Record<string, any>
-
-const AuthFormInput:React.FC<AuthFormInputProps> = (props:AuthFormInputProps):ReactElement => {
-    return (<input className="auth__form--input" required {...props}/>);
+const AuthFormInput:React.FC<any> = ({placeholder,className}):ReactElement => {
+    return (<input className={`form-input ${className}`} placeholder={placeholder} required/>);
 };
 
 export default AuthFormInput;

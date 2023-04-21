@@ -108,20 +108,25 @@
     animation-name: badge;
     animation-duration: 1.5s;
     animation-iteration-count: 1;
-    @include button-sm;
     position: absolute;
+    border:none;
+    font-size: 16px;
+    font-weight: bold;
     top: 0;
+    font-family: "Montserrat", sans-serif;
     height: 60px;
     width: 200px;
-    @include flex-center();
-    border-bottom-left-radius: 34px;
-    border-bottom-right-radius: 34px;
+    cursor: pointer;
     background-color: #000;
-    & svg {
-      color: #fff;
-    }
     color: #fff;
     right: 50px;
+    @include flex-center;
+    border-bottom-left-radius: 34px;
+    border-bottom-right-radius: 34px;
+    & svg {
+      font-size: 16px;
+      @include flex-center;
+    }
   }
   &__wrapper {
     @include flex-center();
@@ -141,13 +146,12 @@
   &__form {
     margin-left: 100px;
     margin-right: -160px;
-    height: 450px;
     width: 800px;
     z-index: 1;
     @include flex-center;
     user-select: none;
     &--container{
-      width: 100% !important;
+      width: 100%;
       height: 100%;
       border-radius: 51px;
       box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
@@ -161,7 +165,11 @@
     &--wrapper {
       @include flex-column-center;
       width: 100%;
-      height: 100%;
+      &-email{
+        @include flex-column-center;
+        width: 100%;
+        height: 420px;
+      }
     }
     &--header {
       width: 75%;
@@ -177,33 +185,34 @@
     }
     &--submit-container {
       width: 90%;
-      @include flex();
-      justify-content: flex-end;
-    }
-    &--input-wrapper {
-      @include flex();
-      flex-direction: column;
-    }
-    &--submit {
-      @include button-xl-field();
-    }
-    &--container {
-      width: 80%;
-      @include flex();
-      justify-content: space-between;
-    }
-    &--title {
-      font-family: "Montserrat Alternates";
-      font-weight: 500;
-      margin: 10px 15px;
-      font-size: 20px;
+      @include flex-center();
     }
     &--input {
-      margin-bottom: 15px;
-      @include form-input();
-      &-xl {
-        @include form-input();
-        width: 300px !important;
+      &-container{
+        width: 65%;
+        @include flex-column-center();
+        align-items: flex-start;
+        transform:translateX(-43px);
+        &-login{
+          transform:translateX(-43px);
+          width: 65%;
+          @include flex-column-center();
+          align-items: flex-start;
+          margin-bottom:40px;
+        }
+      }
+      &-title{
+        font-size: 28px;
+        margin: 7px 10px;
+        font-weight: bold;
+      }
+      &-email{
+        width: 100%;
+        margin: 50px 0;
+      }
+      &-login{
+        width: 100%;
+        margin: 10px;
       }
     }
     &--avatar {
@@ -279,4 +288,26 @@
   100%{
     opacity: 1;
   }
+}
+.slide-out{
+  animation-name: slideOut;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  transform: translateY(800px);
+}
+@keyframes slideOut{
+  0%{
+    transform: translateY(0);
+  }
+  100%{
+    transform: translateY(800px);
+  }
+}
+
+.slide-in{
+  animation-name: formSlide;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+}
+.away{
 }
