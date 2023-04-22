@@ -11,7 +11,7 @@ import { Login } from "../components/Form/Login";
 export const Auth: React.FC = (): React.ReactElement => {
   const [animation,setAnimation] = useState({
     active:"mail",
-    animateOut:"login",
+    animateOut:"",
   })
   console.log(animation);
   return (
@@ -20,14 +20,17 @@ export const Auth: React.FC = (): React.ReactElement => {
         <div className="auth__container--circle-red"></div>
         <div className="auth__container--circle-green"></div>
         <div className="auth__container--glass"></div>
-        <button className="auth__btn-change" onClick={()=>{setAnimation({animateOut:animation.active,active:"login"})}}>{animation.active === "register"?"Зареєструватись":"Увійти"}<span>{animation.active === "register"?<BiLogIn />:""}</span></button>
+        <button className="auth__btn-change" onClick={()=>{
+          if(animation.active !== "login")setAnimation({animateOut:animation.active,active:"login"})
+          if(animation.active === "login")setAnimation({animateOut:animation.active,active:"mail"})
+ }}>{animation.active === "login"?"Зареєструватись":"Увійти"}<span>{animation.active === "login"?"":<BiLogIn />}</span></button>
         <div className="auth__wrapper">
           <Logo/>
           <Form>
-            <Mail slideOut={animation.animateOut==="mail"} slideIn={animation.active==="mail"}/>
-            {/* <Code/> */}
-            {/* <Registrate/> */}
-            <Login slideOut={animation.animateOut==="login"} slideIn={animation.active==="login"}/>
+            <Mail animation={animation} updateAnimation={setAnimation}/>
+            <Code animation={animation} updateAnimation={setAnimation}/>
+            <Registrate animation={animation} updateAnimation={setAnimation}/>
+            <Login animation={animation} updateAnimation={setAnimation}/>
           </Form>
         </div>
       </div>

@@ -18,7 +18,7 @@
         inset 0px -63px 97px 28px #f2f2f2;
       filter: blur(0);
     }
-    & .auth__container--circle-green {     
+    & .auth__container--circle-green {
       animation-name: backgroundShow;
       animation-duration: 1.5s;
       animation-iteration-count: 1;
@@ -109,7 +109,7 @@
     animation-duration: 1.5s;
     animation-iteration-count: 1;
     position: absolute;
-    border:none;
+    border: none;
     font-size: 16px;
     font-weight: bold;
     top: 0;
@@ -144,31 +144,39 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
   &__form {
+    position: relative;
     margin-left: 100px;
     margin-right: -160px;
     width: 800px;
+    height: 420px;
     z-index: 1;
     @include flex-center;
     user-select: none;
-    &--container{
+    &--container {
+      position: absolute;
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       border-radius: 51px;
       box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
       background: rgba(255, 255, 255, 0.5);
-      animation-name: formSlide;
-      animation-duration: 1.5s;
-      animation-iteration-count: 1;
       @include flex-center;
+      &-register {
+        position: absolute;
+        width: 100%;
+        min-height: 100%;
+        border-radius: 51px;
+        box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+        background: rgba(255, 255, 255, 0.5);
+      }
     }
 
     &--wrapper {
       @include flex-column-center;
       width: 100%;
-      &-email{
+      height: 800px !important;
+      &-email {
         @include flex-column-center;
         width: 100%;
-        height: 420px;
       }
     }
     &--header {
@@ -183,36 +191,70 @@
         line-height: 35px;
       }
     }
+    &--title {
+      text-align: center;
+      margin: 20px;
+      font-size: 40px;
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+    }
     &--submit-container {
       width: 90%;
       @include flex-center();
     }
     &--input {
-      &-container{
+      &-container {
         width: 65%;
         @include flex-column-center();
         align-items: flex-start;
-        transform:translateX(-43px);
-        &-login{
-          transform:translateX(-43px);
+        transform: translateX(-43px);
+        &-login {
+          transform: translateX(-43px);
           width: 65%;
           @include flex-column-center();
           align-items: flex-start;
-          margin-bottom:40px;
+          margin-bottom: 40px;
+        }
+        &-register {
+          &-xs {
+            @include flex-column-center();
+            align-items: flex-start;
+            margin-left: 60px;
+            margin-top: 20px;
+            width: 30%;
+          }
+          &-xm {
+            @include flex-column-center();
+            align-items: flex-start;
+            width: 50%;
+            margin-top: 20px;
+            margin-left: 60px;
+          }
+          &-lg {
+            margin-left: 60px;
+            @include flex-column-center();
+            align-items: flex-start;
+            margin-top: 20px;
+            width: 74%;
+          }
         }
       }
-      &-title{
+      &-title {
         font-size: 28px;
         margin: 7px 10px;
         font-weight: bold;
       }
-      &-email{
+      &-email {
         width: 100%;
         margin: 50px 0;
       }
-      &-login{
+      &-login {
         width: 100%;
         margin: 10px;
+      }
+      &-wrapper {
+        @include flex-column-center();
+        align-items: flex-start;
       }
     }
     &--avatar {
@@ -262,52 +304,60 @@
 }
 @keyframes formSlide {
   0% {
-    transform:translateX(800px) ;
+    transform: translateX(800px);
     opacity: 0;
   }
   100% {
-    transform:translateX(0) ;
+    transform: translateX(0);
     opacity: 1;
   }
 }
 
-@keyframes badge{
-  0%{
+@keyframes badge {
+  0% {
     transform: translateY(-150px);
     opacity: 0;
   }
-  100%{
+  100% {
     transform: translateY(0);
     opacity: 1;
   }
 }
-@keyframes backgroundShow{
-  0%{
+@keyframes backgroundShow {
+  0% {
     opacity: 0;
   }
-  100%{
+  100% {
     opacity: 1;
   }
 }
-.slide-out{
+@mixin away {
+  transform: translateY(800px);
+  opacity: 0;
+}
+.slide-out {
   animation-name: slideOut;
   animation-duration: 1.5s;
   animation-iteration-count: 1;
-  transform: translateY(800px);
+  @include away;
 }
-@keyframes slideOut{
-  0%{
+@keyframes slideOut {
+  0% {
     transform: translateY(0);
+    opacity: 1;
   }
-  100%{
+  100% {
     transform: translateY(800px);
+    opacity: 0;
   }
 }
 
-.slide-in{
+.slide-in {
   animation-name: formSlide;
   animation-duration: 1.5s;
   animation-iteration-count: 1;
 }
-.away{
+
+.away {
+  @include away;
 }
