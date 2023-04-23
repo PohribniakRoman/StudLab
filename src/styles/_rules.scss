@@ -1,0 +1,16 @@
+.rules{
+    &__logo{
+        height: 150px;
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+    }
+    &__title{
+        text-align: center;
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 45px;
+    }
+}

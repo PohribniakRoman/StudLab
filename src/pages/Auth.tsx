@@ -1,12 +1,12 @@
 import * as React from "react";
 import { BiLogIn } from "react-icons/bi";
 import { useState } from "react";
-import { Logo } from "../components/logo";
 import { Form } from "../components/ui-components/Form";
 import { Registrate } from "../components/Form/Registrate";
 import { Mail } from "../components/Form/Mail";
 import { Code } from "../components/Form/Code";
 import { Login } from "../components/Form/Login";
+import { Logo } from "../components/logo";
 
 export const Auth: React.FC = (): React.ReactElement => {
   const [animation,setAnimation] = useState({
@@ -25,7 +25,7 @@ export const Auth: React.FC = (): React.ReactElement => {
           if(animation.active === "login")setAnimation({animateOut:animation.active,active:"mail"})
  }}>{animation.active === "login"?"Зареєструватись":"Увійти"}<span>{animation.active === "login"?"":<BiLogIn />}</span></button>
         <div className="auth__wrapper">
-          <Logo/>
+          <Logo variant="auth"/>
           <Form>
             <Mail animation={animation} updateAnimation={setAnimation}/>
             <Code animation={animation} updateAnimation={setAnimation}/>

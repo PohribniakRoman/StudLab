@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { Auth } from './pages/Auth';
-
+import { Router } from './services/Router';
 
 export const App:React.FC = ():React.ReactElement => {
-    return (<>
-    <Auth/>
-    </>);
+    return (<Router/>);
 }

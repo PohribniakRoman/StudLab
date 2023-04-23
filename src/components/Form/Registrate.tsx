@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import AuthFormInput from "../ui-components/AuthFormInput";
 import Button from "../ui-components/Button";
 import { Subtitle } from "../ui-components/Subtitle";
+import { PhotoInput } from "../ui-components/PhotoInput";
+import { Link } from "react-router-dom";
 
 export const Registrate:React.FC<any> = ({animation,updateAnimation})=>{
+    const formData = useRef({});
     const nodeName = "register";
     const isAway = animation.active === nodeName || animation.animateOut === nodeName;
     const slideIn = animation.active===nodeName;
     const slideOut = animation.animateOut===nodeName;
-    return <form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`}>
+    return <form className={`auth__form--container-register ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`}>
     <div className="auth__form--wrapper">
-    <div className="auth__form--container-register">
     <h1 className="auth__form--title">Реєстрація</h1>
-    <div className="aith__form--justify">
+    <div className="auth__form--justify">
         <div className="auth__form--input-wrapper">
             <div className="auth__form--input-container-register-xs">
                 <Subtitle className="auth__form--input-title" title="Ім'я"/>
@@ -23,9 +25,7 @@ export const Registrate:React.FC<any> = ({animation,updateAnimation})=>{
                 <AuthFormInput placeholder="Україні"/>
             </div>
         </div>
-        <div className="auth__form--avatar-wrapper">
-
-            </div>
+            <PhotoInput formData={formData}/>
         </div>
             <div className="auth__form--input-container-register-xm">
                 <Subtitle className="auth__form--input-title" title="Створіть Пароль"/>
@@ -39,10 +39,13 @@ export const Registrate:React.FC<any> = ({animation,updateAnimation})=>{
                 <Subtitle className="auth__form--input-title" title="Спеціальність"/>
                 <AuthFormInput placeholder="Україні"/>
             </div>
-    <div className="auth__form--submit-container">
-        <Button type="submit" title="Готово!" variant="field"/>
-    </div>
-    </div>
+            <label className="auth__form--input-container-register-rights">
+                <input type="checkbox" name="rights" required/>
+                Я приймаю<Link target="_blank" to="/rules">Правила користування сервісом</Link>
+            </label>
+        <div className="auth__form--submit-container-register">
+            <Button type="submit" title="Готово!" variant="field"/>
+        </div>
     </div>
     </form>
 }
