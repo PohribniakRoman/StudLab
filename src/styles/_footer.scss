@@ -1,0 +1,31 @@
+.footer{
+    width: 100%;
+    height: 200px;
+    border-top-left-radius: 60px;
+    @include flex-center;
+    position: absolute;
+    background: #fff;
+    bottom: 0;
+    border-top-right-radius: 60px;
+    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.31);
+    cursor: context-menu;
+    user-select: none;
+    &__container{
+        width: 90%;
+        @include flex-center;
+        justify-content: space-between;           
+    }
+    &__wrapper{
+        @include flex-center;
+        justify-content: space-between;           
+    }
+    &__watermark{
+        font-size: 20px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+    }
+    &__logo{
+        margin: 50px;
+    }
+
+}
