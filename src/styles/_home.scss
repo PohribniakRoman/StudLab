@@ -1,4 +1,7 @@
 .home{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
     min-height: 100vh;
     background: linear-gradient(106.54deg, rgba(205, 255, 231, 0.8) 3.61%, rgba(208, 235, 255, 0.8) 40.26%, rgba(181, 220, 255, 0.8) 69.88%, rgba(185, 192, 255, 0.8) 100%);
     backdrop-filter: blur(11px);

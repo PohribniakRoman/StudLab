@@ -1,0 +1,95 @@
+.userbar{
+    display: flex;
+    margin: 20px;
+    width: 90%;
+    @include flex-center;
+    justify-content: space-between;     
+    &__search{
+        width: 75%;
+        &--input{
+            padding: 0 30px;
+            font-size: 20px;
+            font-family: 'Montserrat Alternates', sans-serif;
+            width: 94%;
+            border: none;
+            border-radius: 18px;
+            height: 52px;
+            text-align: center;
+            outline: none;
+        }
+        &::placeholder{
+            font-family: 'Montserrat Alternates', sans-serif;
+            font-size: 20px;
+        }
+    }
+    &__bell,&__comment,&__exit{
+        @include flex-center;
+        margin: 0 7px;
+
+        
+    }
+    &__icon{
+        cursor: pointer;
+        @include flex-center;
+        width: 82px;
+        height: 52px;
+        border-radius: 18px;
+        background-color: #fff;
+        box-shadow: 0px 4px 17px rgba(206, 33, 64, 0.31);
+        & div{
+            width: 30px;
+            height: 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+        &--comment{
+            background-image: url(../assets/CommentsIcon.svg);
+        }
+        &--bell{
+            background-image: url(../assets/BellIcon.svg);
+        }
+        &--exit{
+            background-image: url(../assets/ExitIcon.svg);
+        }
+    }
+    &__avatar{
+        background-color: #fff;
+        @include flex-center;
+        cursor: pointer;
+        justify-content: space-around;
+        width: 90px;
+        height: 40px;
+        border-radius: 18px;
+        padding: 10px;
+        &--img{
+            width: 40px;
+            height: 40px;
+            background: #000;
+            border-radius: 50%;
+        }
+        &--icon{
+            &-more{
+                width: 16px;
+                height: 8px;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-image: url(../assets/AvatarMoreIcon.svg);
+            }
+        }
+    }
+}
+.notified{
+    position: relative;
+    &::before{
+        content: '';
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        background-color: #E43050;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+}

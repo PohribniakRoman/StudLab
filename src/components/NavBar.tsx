@@ -3,9 +3,22 @@ import HomeIconSVG from "../assets/HomeIcon.svg";
 import CalendarIconSVG from "../assets/CalendarIcon.svg";
 import CaseIconSVG from "../assets/CaseIcon.svg";
 import RecommendationsIconSVG from "../assets/RecommendationsIcon.svg";
+import AboutUsIconSVG from "../assets/AboutUsIcon.svg";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 export const NavBar:React.FC = () => {
-    return  <section className="navbar">
+    const galassRef = useRef<any>();
+    return <>
+    <div className="navbar__glass" ref={galassRef}/>
+    <section className="navbar" onMouseOver={()=>{
+        galassRef.current.classList.remove("glass-hide");
+        galassRef.current.classList.add("glass-show");
+    }} 
+    onMouseOut={()=>{
+        galassRef.current.classList.remove("glass-show");
+        galassRef.current.classList.add("glass-hide");
+    }}>
         <div className="navbar__logo">
             <Logo variant="default"/>
         </div>
@@ -26,7 +39,14 @@ export const NavBar:React.FC = () => {
                 <img src={RecommendationsIconSVG} />
                 <p className="navbar__menu--item-label">Рекомендації</p>
             </nav>
+            <Link to="/rules">
+                <nav className="navbar__menu--item">
+                    <img src={AboutUsIconSVG} />
+                    <p className="navbar__menu--item-label">Про Нас</p>
+                </nav>
+            </Link>
         </nav>
-        <div></div>
-    </section>
+        <div/>
+        </section>
+    </> 
 }
