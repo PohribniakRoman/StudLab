@@ -1,0 +1,88 @@
+.event{
+    @include flex;
+    width: 1080px;
+    height: 420px;
+    padding: 20px 40px;
+    justify-content: center;
+    background: #FFFFFF;
+    border-radius: 40px;
+    margin-top: 80px;
+    &__cover{
+        min-width: 420px;
+        height: 420px;
+        margin-top: -60px;
+        border-radius: 20px;
+        background-color: #000;
+        border: 5px solid #E43050;
+        filter: drop-shadow(0px 11px 21px rgba(206, 33, 64, 0.31));
+    }
+    &__title{
+        font-weight: bold;
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-size: 36px;
+        margin-top: 40px;
+        margin-left: 50px;
+    }
+    &__description{
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-size: 20px;
+        width: 80%;
+        font-weight: 500;
+        margin: 30px;
+        margin-left: 50px;
+        line-height: 22px;
+    }
+    &__additional{
+        font-family: 'Montserrat Alternates', sans-serif;
+        margin-left: 50px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 18px;
+        & b{
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            margin-left: 5px;
+            color: #E43050;
+        }
+    }
+    &__controls{
+        margin-top: 90px;
+        margin-left: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__discuss{
+        width: 70px;
+        height: 70px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 17px rgba(206, 33, 64, 0.25);
+        border-radius: 24px;
+        cursor: pointer;
+        background-position: center;
+        background-size: 30px;
+        background-repeat: no-repeat;
+        background-image: url(../assets/CommentsIcon.svg);
+    }
+    &__join{
+        @include flex-center;
+        font-family: 'Montserrat Alternates', sans-serif;
+        font-weight: bold;
+        padding: 15px 20px;
+        font-size: 22px;
+        background: #E43050;
+        box-shadow: 0px 4px 12px rgba(206, 33, 64, 0.31);
+        border-radius: 17px;
+        color: #fff;
+        cursor: pointer;
+        &--svg{
+            width: 30px;
+            height: 30px;
+            background-image: url(../assets/JoinIcon.svg);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-left: 10px;
+        }
+    }
+}
