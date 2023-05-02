@@ -1,0 +1,53 @@
+.slider{
+    @include flex-center;
+    width: 1300px;
+    height: 600px;
+    overflow: hidden;
+    &__slip{
+        @include flex-center;
+        justify-content: flex-start;
+        width: 100%;
+        transition: .3s;
+        transform:translateX(-1300px);
+        height: 100%;
+    }
+    &__content{
+        min-width: 1300px;
+        min-height: 600px;
+        border-radius: 80px;
+        background: #000;
+        @include flex-center;
+        color: #fff;
+    }
+    &__container{
+        @include flex-column-center;
+    }
+    &__wrapper{
+        @include flex-center;
+        padding: 60px 0;
+        width: 1500px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 101px;
+    }
+    &__dots{
+        @include flex-center;
+        height: 40px;
+        &--item{
+            width:12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #CE2140;
+            margin:4px;
+            cursor: pointer;
+            transition: .3s;
+            &:hover{
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+.active_dot{
+    width: 20px;
+    height: 20px;
+}
