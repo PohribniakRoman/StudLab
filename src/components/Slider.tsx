@@ -13,7 +13,7 @@ export const Slider:React.FC = () => {
             <section className="slider">
                 <div ref={slip} className="slider__slip">
                     {sldierData.map(el=>{
-                        return <div className="slider__content">
+                        return <div key={el.url} className="slider__content">
                             {el.url}
                         </div>
                     })}
@@ -22,7 +22,7 @@ export const Slider:React.FC = () => {
         </div>
         <section className="slider__dots">
             {sldierData.map((el,ind)=>{
-                return <div onClick={()=>{updateSlider(ind);setActive(ind)}} className={`slider__dots--item ${activeDot===ind?"active_dot":""}`}></div>
+                return <div key={el.url} onClick={()=>{updateSlider(ind);setActive(ind)}} className={`slider__dots--item ${activeDot===ind?"active_dot":""}`}></div>
             })}
         </section>
     </div>
