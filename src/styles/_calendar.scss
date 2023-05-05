@@ -5,12 +5,16 @@
   border-radius: 43px;
   height: 170px;
   position: relative;
+  user-select: none;
   &__day {
     @include flex-column-center;
     justify-content: space-between;
     margin: 15px;
     height: 100px;
     width: 60px;
+    border-radius: 30px;
+    transition: 0.3s;
+    cursor: pointer;
     &--container {
       margin: 20px;
       @include flex-center;
@@ -59,7 +63,6 @@
 }
 .today {
   background-color: #000;
-  border-radius: 30px;
   & h5 {
     color: #fff;
   }

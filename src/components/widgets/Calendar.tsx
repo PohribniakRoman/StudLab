@@ -26,13 +26,36 @@ export const Calendar:React.FC = () => {
     const [calendarData,setCalendar] = useState<CalendarInterface[]>(defultState);
 
         
+    const slideRightCalendar = (ind:number) => {
+        setCalendar(prev=>{
+            prev[ind].current = false;
+            prev[ind+1>6?0:ind+1].current = true;
+            return [...prev];
+        })
+    }
+    
+    const slideLeftCalendar = (ind:number) => {
+        setCalendar(prev=>{
+            prev[ind].current = false;
+            prev[ind-1<0?6:ind-1].current = true;
+            return [...prev];
+        })
+    }
     
     return <section className="calendar">
-        <div className="calendar__arrow calendar__arrow--left"></div>
+        <div className="calendar__arrow calendar__arrow--left" onClick={()=>{
+            slideLeftCalendar(calendarData.findIndex(el=>el.current));
+        }}></div>
         <h3 className="calendar__month">{month[new Date().getMonth()]}</h3>
             <div className="calendar__day--container">
-                {calendarData.map(el=>{
-                    return <div key={el.label} className={`calendar__day ${el.current?"today":""}`}>
+                {calendarData.map((el,ind)=>{
+                    return <div key={el.label} className={`calendar__day ${el.current?"today":""}`} onClick={()=>{
+                        setCalendar(prev=>{
+                            prev[calendarData.findIndex(el=>el.current)].current = false;
+                            prev[ind].current = true;
+                            return [...prev];
+                        })
+                    }}>
                         <div className={`calendar__label--date ${el.evented?"evented":""}`}>{el.date}</div>
                         <h5 className="calendar__label--name">
                             {el.label}
@@ -40,6 +63,8 @@ export const Calendar:React.FC = () => {
                     </div>
                 })}
             </div>
-        <div className="calendar__arrow calendar__arrow--right"></div>
+        <div className="calendar__arrow calendar__arrow--right" onClick={()=>{
+            slideRightCalendar(calendarData.findIndex(el=>el.current));
+        }}></div>
     </section>
 }
