@@ -1,8 +1,8 @@
 import {useState} from "react";
 import { Subtitle } from "./Subtitle";
 
-export const PhotoInput:React.FC<any> = ({formData}) => {
-    const [avatar,setAvatar] = useState<string>("");
+export const PhotoInput:React.FC<any> = ({formData,withLabel = true,defultAvatar = ""}) => {
+    const [avatar,setAvatar] = useState<string>(defultAvatar);
     return(
         <label className="auth__form--avatar-wrapper">
             <input type="file" className="auth__form--file-input" accept=".jpg, .jpeg, .png" onChange={(event)=>{
@@ -17,7 +17,7 @@ export const PhotoInput:React.FC<any> = ({formData}) => {
                 }
             }}/>
             <div className="auth__form--avatar" style={{backgroundImage:`url("${avatar}")`}}></div>
-            <Subtitle className="auth__form--input-title" title="Фото"/>
+            {withLabel?<Subtitle className="auth__form--input-title" title="Фото"/>:""}
         </label>
     )
 }

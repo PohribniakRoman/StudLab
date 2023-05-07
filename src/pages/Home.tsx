@@ -7,6 +7,7 @@ import { UserBar } from "../components/UserBar";
 import { Vacancy } from "../components/Vacancy";
 import { VacancyContainer } from "../components/VacanyContainer";
 import { Calendar } from "../components/widgets/Calendar";
+import { Profie } from "../components/widgets/Profile";
 
 export const Home: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ export const Home: React.FC = () => {
       <UserBar />
       <Slider/>
       <Calendar/>
+      <Profie/>
       <EventContainer>
         <Event/>
         <Event/>

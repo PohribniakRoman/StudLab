@@ -1,0 +1,25 @@
+.profile{
+    width: 750px;
+    padding: 40px;
+    margin: 20px;
+    height: 220px;
+    background-color: #fff;
+    border-radius: 41px;
+    &__title{
+        margin-bottom: 20px;
+        font-size: 30px;
+        font-weight: bold;
+        width: 90%;
+    }
+    &__container{
+        @include flex;        
+    }
+    & .auth__form--avatar{
+        width: 140px;
+        height: 140px;
+        &::after{
+            width: 143px;
+            height: 143px;
+        }
+    }
+}
