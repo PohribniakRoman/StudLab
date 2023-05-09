@@ -12,12 +12,12 @@ export const NavBar:React.FC = () => {
     return <>
     <div className="navbar__glass" ref={galassRef}/>
     <section className="navbar" onMouseOver={()=>{
-        galassRef.current.classList.remove("glass-hide");
-        galassRef.current.classList.add("glass-show");
+        // galassRef.current.classList.remove("glass-hide");
+        // galassRef.current.classList.add("glass-show");
     }} 
     onMouseOut={()=>{
-        galassRef.current.classList.remove("glass-show");
-        galassRef.current.classList.add("glass-hide");
+        // galassRef.current.classList.remove("glass-show");
+        // galassRef.current.classList.add("glass-hide");
     }}>
         <div className="navbar__logo">
             <Logo variant="default"/>
