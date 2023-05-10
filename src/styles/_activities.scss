@@ -1,0 +1,16 @@
+.activities{
+    width: 930px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.51);
+    border-radius: 41px;
+    margin-top: 15px;
+    &__title{
+        margin: 25px 0 6px 50px;
+        font-size: 24px;
+        font-weight: 700;
+    }
+    &__date{
+        margin: 0 0 40px 50px;
+        font-size: 20px;
+    }
+}
