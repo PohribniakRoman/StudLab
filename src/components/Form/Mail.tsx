@@ -1,3 +1,4 @@
+import { ENDPOINTS } from "../../services/ENDPOINTS";
 import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
 import { useRef } from "react";
@@ -18,6 +19,7 @@ export const Mail:React.FC<any> = ({animation,updateAnimation})=>{
         e.preventDefault();
         if(formData.current.email.trim()){
             updateAnimation({animateOut:animation.active,active:"code"})
+            fetch(ENDPOINTS.join,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})
         }
     }}>
         <div className="auth__form--wrapper-email">
@@ -28,7 +30,7 @@ export const Mail:React.FC<any> = ({animation,updateAnimation})=>{
             <div className="auth__form--submit-container">
                 <Button type="submit" variant="field" title="Перевірити" onClick={()=>{
                 }}/>
-            </div>
+                </div>
         </div>
     </form>
 }

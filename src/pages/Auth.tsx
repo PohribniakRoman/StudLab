@@ -13,7 +13,6 @@ export const Auth: React.FC = (): React.ReactElement => {
     active:"mail",
     animateOut:"",
   })
-  console.log(animation);
   return (
     <section className="auth">
       <div className="auth__container">

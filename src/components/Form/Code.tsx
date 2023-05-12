@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
+import { ENDPOINTS } from "../../services/ENDPOINTS";
 
 type CodelInterface = {
     code:string,
@@ -17,6 +18,7 @@ export const Code:React.FC<any> = ({animation,updateAnimation})=>{
         e.preventDefault();
         if(formData.current.code.trim()){
             updateAnimation({animateOut:animation.active,active:"register"})
+            fetch(ENDPOINTS.verify,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})
         }
     }}>
         <div className="auth__form--wrapper-email">

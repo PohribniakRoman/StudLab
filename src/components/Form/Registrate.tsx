@@ -1,9 +1,10 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef } from "react";
 import AuthFormInput from "../ui-components/AuthFormInput";
 import Button from "../ui-components/Button";
 import { Subtitle } from "../ui-components/Subtitle";
 import { PhotoInput } from "../ui-components/PhotoInput";
 import { Link } from "react-router-dom";
+import { ENDPOINTS } from "../../services/ENDPOINTS";
 
 export const Registrate:React.FC<any> = ({animation,updateAnimation})=>{
     const formData = useRef({});
@@ -13,7 +14,7 @@ export const Registrate:React.FC<any> = ({animation,updateAnimation})=>{
     const slideOut = animation.animateOut===nodeName;
     return <form className={`auth__form--container-register ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={(e)=>{
         e.preventDefault();
-        console.log(formData);
+        fetch(ENDPOINTS.authorize,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})
     }}>
     <div className="auth__form--wrapper">
     <h1 className="auth__form--title">Реєстрація</h1>
@@ -32,15 +33,15 @@ export const Registrate:React.FC<any> = ({animation,updateAnimation})=>{
         </div>
             <div className="auth__form--input-container-register-xm">
                 <Subtitle className="auth__form--input-title" title="Створіть Пароль"/>
-                <AuthFormInput placeholder="Слава" name="password" collector={formData}/>
+                <AuthFormInput placeholder="Слава" type="password" name="password" collector={formData}/>
             </div>
             <div className="auth__form--input-container-register-xm">
                 <Subtitle className="auth__form--input-title" title="Підтвердіть Пароль"/>
-                <AuthFormInput placeholder="Україні" name="passwordcheck" collector={formData}/>
+                <AuthFormInput placeholder="Україні" type="password" name="passwordcheck" collector={formData}/>
             </div>
             <div className="auth__form--input-container-register-lg">
                 <Subtitle className="auth__form--input-title" title="Спеціальність"/>
-                <AuthFormInput placeholder="Україні" name="specialty" collector={formData}/>
+                <AuthFormInput placeholder="Україні" name="major" collector={formData}/>
             </div>
             <label className="auth__form--input-container-register-rights">
                 <input type="checkbox" name="rights" required/>
