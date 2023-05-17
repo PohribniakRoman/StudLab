@@ -6,7 +6,7 @@ export const ENDPOINTS = {
     join:hostname+"auth/join",
     logout:hostname+"auth/logout",
     params:{
-        mode: "cors",
+        mode: "cors" as RequestMode,
         headers:{"Content-Type":"application/json"}
-    }
+    } as RequestInit
 }
