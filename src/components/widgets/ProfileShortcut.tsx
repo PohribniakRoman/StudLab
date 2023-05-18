@@ -1,7 +1,7 @@
 import React from "react"
 import { PhotoInput } from "../ui-components/PhotoInput"
 
-export const Profie:React.FC = () =>{
+export const ProfileShortcut:React.FC = () =>{
     return <section className="profile">
         <h1 className="profile__title">Профіль</h1>
         <div className="profile__container">

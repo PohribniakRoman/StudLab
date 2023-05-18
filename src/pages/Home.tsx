@@ -6,20 +6,14 @@ import { Slider } from "../components/Slider";
 import { UserBar } from "../components/UserBar";
 import { Vacancy } from "../components/Vacancy";
 import { VacancyContainer } from "../components/VacanyContainer";
-import { Activities } from "../components/widgets/Activities";
-import { Calendar } from "../components/widgets/Calendar";
-import { Profie } from "../components/widgets/Profile";
 
 export const Home: React.FC = () => {
   return (
-    <section className="home">
+    <section className="page">
       <NavBar />
-      <div className="home__container">
+      <div className="page__container">
       <UserBar />
       <Slider/>
-      <Calendar/>
-      <Activities/>
-      <Profie/>
       <EventContainer>
         <Event/>
         <Event/>

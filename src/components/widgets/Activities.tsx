@@ -1,3 +1,5 @@
+import { ActivitiesEvent } from "./ActivitiesEvent"
+
 export const Activities:React.FC = () =>{
     fetch("",{method:"POST",
     mode: "cors",
@@ -7,5 +9,9 @@ export const Activities:React.FC = () =>{
             Мої активності
         </h1>
         <h3 className="activities__date">Сьогодні</h3>
+        <div className="activities__container">
+            <ActivitiesEvent/>
+            <ActivitiesEvent/>
+        </div>
     </section>
-}   
+}       

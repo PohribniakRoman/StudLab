@@ -28,6 +28,7 @@
         font-size: 20px;
         width: 80%;
         font-weight: 500;
+        height: auto;
         margin: 30px;
         margin-left: 50px;
         line-height: 22px;
@@ -76,10 +77,8 @@
         color: #fff;
         cursor: pointer;
         &--svg{
-            width: 30px;
-            height: 30px;
             background-image: url(../assets/JoinIcon.svg);
-            background-size: contain;
+            background-size: 30px;
             background-position: center;
             background-repeat: no-repeat;
             margin-left: 10px;

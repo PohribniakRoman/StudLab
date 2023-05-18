@@ -1,4 +1,5 @@
 .userbar{
+    user-select: none;
     display: flex;
     margin: 20px;
     width: 90%;
@@ -90,4 +91,33 @@
         height: 10px;
         border-radius: 50%;
     }
+}
+
+.dropmenu{
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: 200ms;
+    position: absolute;
+    right: 0;
+    transform: translate(-45%,50%);
+    margin-top: 65px;
+    z-index: 100;
+    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.31);
+    border-radius: 20px;
+    &__wrapper{
+        background-color: #fff;
+        width: 250px;
+        min-height: 0;
+    }
+    &__item{
+        padding: 20px;
+        &:hover{
+            cursor: pointer;
+            background-color: rgb(226, 226, 226);
+        }
+    }
+}
+.dropmenu.dropactive{
+    grid-template-rows: 1fr;
 }

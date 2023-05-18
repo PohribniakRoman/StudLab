@@ -1,12 +1,14 @@
 .navbar{
     background: rgba(255, 255, 255, 0.5);
     border-radius: 45px;
+    user-select: none;
     height: 1080px;
     width: 160px;
     margin-left: 10px;
     z-index: 100;
     @include flex-column-center;
     transition: .3s;
+    margin-right: 20px;
     &::after{
         content: '';
         position: absolute;
