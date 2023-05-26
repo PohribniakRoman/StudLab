@@ -11,7 +11,7 @@ export const Slider:React.FC = () => {
     return <div className="slider__container">
         <div className="slider__wrapper">
             <section className="slider">
-                <div ref={slip} className="slider__slip">
+                <div ref={slip} style={{transform:"translateX(0)"}} className="slider__slip">
                     {sldierData.map(el=>{
                         return <div key={el.url} className="slider__content">
                             {el.url}

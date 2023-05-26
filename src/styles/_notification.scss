@@ -1,0 +1,33 @@
+.notification{
+    position: absolute;
+    z-index: 1;
+    @include flex-column-center;
+    justify-content: flex-end;
+    bottom: 50px;
+    left: 50px;
+    font-size: 16px;
+    &__item{
+        width: 350px;
+        margin: 5px 0;
+        line-height: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        & b{
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+    }
+    & .warning{
+        background-color: rgb(255, 221, 0);
+    }
+    & .error{
+        background-color: rgba(255, 0, 0, 0.589);
+        color: #fff;
+    }
+    & .success{
+        background-color: lightgreen;
+    }
+    & .info{
+        background-color: lightblue;
+    }
+}

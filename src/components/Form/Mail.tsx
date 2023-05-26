@@ -1,4 +1,5 @@
 import { ENDPOINTS } from "../../services/ENDPOINTS";
+import { useNotification } from "../../services/hooks/useNotification";
 import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
 import { useRef } from "react";
@@ -13,12 +14,13 @@ export const Mail:React.FC<any> = ({animation,updateAnimation})=>{
     const slideIn = animation.active===nodeName;
     const slideOut = animation.animateOut===nodeName;
     const formData = useRef<EmailInterface>({email:""});
-
+    const notification = useNotification();
     
     return <form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={(e)=>{
         e.preventDefault();
         if(formData.current.email.trim()){
             updateAnimation({animateOut:animation.active,active:"code"})
+            notification.createNotification("На ваш емейл надіслано лист з кодом","info")
             fetch(ENDPOINTS.join,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})
         }
     }}>

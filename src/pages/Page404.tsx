@@ -2,10 +2,12 @@ import { Link } from "react-router-dom"
 import { Footer } from "../components/Footer"
 
 export const Page404:React.FC = () =>{
-    return <section className="error">
-        <h1 className="error__title">404</h1>
-        <h3 className="error__subtitle">Page was not found!</h3>
-        <Link className="error__link" to="/">Home</Link>
+    return <section className="errorPage">
+        <h1 className="errorPage__title">404</h1>
+        <div className="errorPage__container">
+            <h3 className="errorPage__subtitle">Page was not found!</h3>
+            <Link className="errorPage__link" to="/">Home</Link>
+        </div>
         <Footer/>
     </section>
 }

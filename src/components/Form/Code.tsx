@@ -2,6 +2,7 @@ import { useRef } from "react";
 import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
 import { ENDPOINTS } from "../../services/ENDPOINTS";
+import { useNotification } from "../../services/hooks/useNotification";
 
 type CodelInterface = {
     code:string,
@@ -13,11 +14,13 @@ export const Code:React.FC<any> = ({animation,updateAnimation})=>{
     const slideIn = animation.active===nodeName;
     const slideOut = animation.animateOut===nodeName;
     const formData = useRef<CodelInterface>({code:""});
-
+    const notifications =useNotification();
+    
     return<form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={(e)=>{
         e.preventDefault();
         if(formData.current.code.trim()){
             updateAnimation({animateOut:animation.active,active:"register"})
+            notifications.createNotification("Email підтверджено","success")
             fetch(ENDPOINTS.verify,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})
         }
     }}>

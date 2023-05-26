@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { ENDPOINTS } from "../../services/ENDPOINTS";
+import { useNotification } from "../../services/hooks/useNotification";
 import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
 import { Subtitle } from "../ui-components/Subtitle"
@@ -15,10 +17,14 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
     const slideIn = animation.active===nodeName;
     const slideOut = animation.animateOut===nodeName;    
     const formData = useRef<LoginlInterface>({login:"",password:""});
+    const notification = useNotification();
+    const navigate = useNavigate()
 
     return <form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={(e)=>{
         e.preventDefault();
         if(formData.current.login.trim() && formData.current.password.trim()){
+            notification.createNotification("Wellcome back","success")
+            navigate("/");
             fetch(ENDPOINTS.login,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})
         }
     }}>
