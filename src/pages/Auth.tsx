@@ -1,6 +1,6 @@
 import * as React from "react";
 import { BiLogIn } from "react-icons/bi";
-import { useState } from "react";
+import { useState,createContext } from "react";
 import { Form } from "../components/ui-components/Form";
 import { Registrate } from "../components/Form/Registrate";
 import { Mail } from "../components/Form/Mail";
@@ -8,11 +8,15 @@ import { Code } from "../components/Form/Code";
 import { Login } from "../components/Form/Login";
 import { Logo } from "../components/logo";
 
+
+export const MailContext = createContext([""])
+
 export const Auth: React.FC = (): React.ReactElement => {
   const [animation,setAnimation] = useState({
     active:"mail",
     animateOut:"",
   })
+  const [email,setMail] = useState("");
   return (
     <section className="auth">
       <div className="auth__container">
@@ -26,8 +30,8 @@ export const Auth: React.FC = (): React.ReactElement => {
         <div className="auth__wrapper">
           <Logo variant="auth"/>
           <Form>
-            <Mail animation={animation} updateAnimation={setAnimation}/>
-            <Code animation={animation} updateAnimation={setAnimation}/>
+              <Mail animation={animation} updateAnimation={setAnimation} emailStore={setMail}/>
+              <Code animation={animation} updateAnimation={setAnimation} email={email}/>
             <Registrate animation={animation} updateAnimation={setAnimation}/>
             <Login animation={animation} updateAnimation={setAnimation}/>
           </Form>

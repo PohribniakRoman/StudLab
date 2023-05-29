@@ -6,22 +6,31 @@ import { useNotification } from "../../services/hooks/useNotification";
 
 type CodelInterface = {
     code:string,
+    email:string
 }
 
-export const Code:React.FC<any> = ({animation,updateAnimation})=>{
+export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
     const nodeName = "code";
     const isAway = animation.active === nodeName || animation.animateOut === nodeName;
     const slideIn = animation.active===nodeName;
     const slideOut = animation.animateOut===nodeName;
-    const formData = useRef<CodelInterface>({code:""});
+    const formData = useRef<CodelInterface>({code:"",email});
     const notifications =useNotification();
+    console.log(formData.current);
     
     return<form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={(e)=>{
         e.preventDefault();
         if(formData.current.code.trim()){
-            updateAnimation({animateOut:animation.active,active:"register"})
-            notifications.createNotification("Email підтверджено","success")
-            fetch(ENDPOINTS.verify,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})
+            formData.current.email = email;
+            (async ()=>{
+                const resp = await(await fetch(ENDPOINTS.verify,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json();
+                if(resp){
+                    updateAnimation({animateOut:animation.active,active:"register"})
+                    notifications.createNotification("Email підтверджено","success");
+                }else{
+                    notifications.createNotification("Не правильний код","error");
+                }
+            })()
         }
     }}>
         <div className="auth__form--wrapper-email">
