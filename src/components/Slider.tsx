@@ -1,10 +1,14 @@
 import {useRef,useCallback,useState} from "react";
 const sldierData = [{url:"ABC"},{url:"ASD"},{url:"ZXC"},{url:"123"}];
 
+
 export const Slider:React.FC = () => {
-    const slip = useRef<any>();
+    const slip = useRef<HTMLDivElement>({} as HTMLDivElement);
+    
     const updateSlider = useCallback((ind:number)=>{
-        slip.current.style.transform=`translateX(-${ind*1300}px)`;
+        if(slip.current){
+            slip.current.style.transform=`translateX(-${ind*slip.current.offsetWidth}px)`;
+        }
     },[])
     const [activeDot,setActive] = useState<number>(0);
     
