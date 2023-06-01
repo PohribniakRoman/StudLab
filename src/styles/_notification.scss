@@ -1,5 +1,5 @@
 .notification{
-    position: absolute;
+    position: fixed;
     z-index: 1;
     @include flex-column-center;
     justify-content: flex-end;

@@ -1,5 +1,5 @@
 .activities {
-  width: 910px;
+  width: 810px;
   min-height: 600px;
   background: rgba(255, 255, 255, 0.51);
   border-radius: 41px;
@@ -21,15 +21,15 @@
     margin-bottom: 40px;
     position: relative;
     @include flex-center;
-    width: 750px;
+    width: 700px;
     height: 400px;
     background-color: #fff;
     border-radius: 50px;
     &--cover {
       border: 3px solid #e43050;
       margin-left: -20px;
-      min-width: 325px;
-      height: 325px;
+      min-width: 275px;
+      height: 275px;
       border-radius: 20px;
       filter: drop-shadow(0px 11px 21px rgba(206, 33, 64, 0.31));
       background-color: #000;
