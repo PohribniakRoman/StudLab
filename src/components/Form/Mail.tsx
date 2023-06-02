@@ -21,12 +21,13 @@ export const Mail:React.FC<any> = ({animation,updateAnimation,emailStore})=>{
         if(formData.current.email.trim()){
             (async ()=>{
                 const resp = await (await fetch(ENDPOINTS.join,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json()
-                if(resp.sent){
+                console.log(resp);
+                if(resp.message && !resp.hasOwnProperty("error")){
                     emailStore(formData.current.email);
                     updateAnimation({animateOut:animation.active,active:"code"})
-                    notification.createNotification("На ваш емейл надіслано лист з кодом","info");
+                    notification.createNotification(resp.message,"info");
                 }else{
-                    notification.createNotification("Ваш email відсутній в списку дійсних","error");
+                    notification.createNotification(resp.error,"error");
                 }
                 console.log(resp);
             })()

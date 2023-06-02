@@ -13,7 +13,7 @@ export const MailContext = createContext([""])
 
 export const Auth: React.FC = (): React.ReactElement => {
   const [animation,setAnimation] = useState({
-    active:"mail",
+    active:"register",
     animateOut:"",
   })
   const [email,setMail] = useState("");
@@ -38,7 +38,7 @@ export const Auth: React.FC = (): React.ReactElement => {
         </div>
       </div>
       <div className="auth__watermark">® All rights reserved 2023</div>
-      <div className="auth__watermark" style={{left:"50px"}}>Developed by WebLab</div>
+      <div className="auth__watermark">Developed by WebLab</div>
     </section>
   );
 };

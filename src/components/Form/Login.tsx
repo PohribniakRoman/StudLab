@@ -29,7 +29,7 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
         }
     }}>
             <div className="auth__form--wrapper-email">
-            <div className="auth__form--input-container">
+            <div className="auth__form--input-container-login">
                 <Subtitle className="auth__form--input-title" title="Пошта"/>
                 <AuthFormInput xs="auth__form--input-login" name="login" collector={formData} placeholder="Ввести пошту"/>
             </div>
