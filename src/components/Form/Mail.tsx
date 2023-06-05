@@ -20,16 +20,20 @@ export const Mail:React.FC<any> = ({animation,updateAnimation,emailStore})=>{
         e.preventDefault();
         if(formData.current.email.trim()){
             (async ()=>{
-                const resp = await (await fetch(ENDPOINTS.join,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json()
-                console.log(resp);
-                if(resp.message && !resp.hasOwnProperty("error")){
-                    emailStore(formData.current.email);
-                    updateAnimation({animateOut:animation.active,active:"code"})
-                    notification.createNotification(resp.message,"info");
+                const isVerified = await (await fetch(ENDPOINTS.isVerified,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json()
+                emailStore(formData.current.email);
+                if(isVerified.message === "Student is verified"){
+                    updateAnimation({animateOut:animation.active,active:"register"})
+                    notification.createNotification(isVerified.message,"success");
                 }else{
-                    notification.createNotification(resp.error,"error");
+                    const resp = await (await fetch(ENDPOINTS.join,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json()
+                    if(resp.message && !resp.hasOwnProperty("error")){
+                        updateAnimation({animateOut:animation.active,active:"code"})
+                        notification.createNotification(resp.message,"info");
+                    }else{
+                        notification.createNotification(resp.error,"error");
+                    }
                 }
-                console.log(resp);
             })()
         }
     }}>

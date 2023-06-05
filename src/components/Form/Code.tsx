@@ -16,7 +16,6 @@ export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
     const slideOut = animation.animateOut===nodeName;
     const formData = useRef<CodelInterface>({code:"",email});
     const notifications =useNotification();
-    console.log(formData.current);
     
     return<form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={(e)=>{
         e.preventDefault();
@@ -25,6 +24,7 @@ export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
             (async ()=>{
                 const resp = await(await fetch(ENDPOINTS.verify,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json();
                 if(resp){
+                    console.log(resp);
                     updateAnimation({animateOut:animation.active,active:"register"})
                     notifications.createNotification("Email підтверджено","success");
                 }else{

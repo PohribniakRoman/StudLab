@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react"
 import { ENDPOINTS } from "./ENDPOINTS";
 import { useNotification } from "./hooks/useNotification";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export type ProtectedRouterChildren = {
     Children:React.FC,
@@ -15,8 +17,9 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
         if(firstRender.current){
             firstRender.current = false;
             (async ()=>{
-                // const resp = await fetch(ENDPOINTS.authorize);
-                setAuthorized(true);
+                const resp = await (await fetch(ENDPOINTS.person,{method:"POST",body:JSON.stringify({token:cookies.get("token")}), ...ENDPOINTS.params})).json();
+                console.log(resp);
+                setAuthorized(resp);
                 notifications.createNotification("Попередження","warning");
                 notifications.createNotification("Успіх","success");
                 notifications.createNotification("Інформація","info");

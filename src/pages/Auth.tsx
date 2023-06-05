@@ -13,7 +13,7 @@ export const MailContext = createContext([""])
 
 export const Auth: React.FC = (): React.ReactElement => {
   const [animation,setAnimation] = useState({
-    active:"register",
+    active:"mail",
     animateOut:"",
   })
   const [email,setMail] = useState("");
@@ -30,9 +30,9 @@ export const Auth: React.FC = (): React.ReactElement => {
         <div className="auth__wrapper">
           <Logo variant="auth"/>
           <Form>
-              <Mail animation={animation} updateAnimation={setAnimation} emailStore={setMail}/>
-              <Code animation={animation} updateAnimation={setAnimation} email={email}/>
-            <Registrate animation={animation} updateAnimation={setAnimation}/>
+            <Mail animation={animation} updateAnimation={setAnimation} emailStore={setMail}/>
+            <Code animation={animation} updateAnimation={setAnimation} email={email}/>
+            <Registrate animation={animation} updateAnimation={setAnimation} email={email}/>
             <Login animation={animation} updateAnimation={setAnimation}/>
           </Form>
         </div>
