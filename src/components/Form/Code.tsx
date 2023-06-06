@@ -28,7 +28,7 @@ export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
                     updateAnimation({animateOut:animation.active,active:"register"})
                     notifications.createNotification("Email підтверджено","success");
                 }else{
-                    notifications.createNotification("Не правильний код","error");
+                    notifications.createNotification("Invalid data","error");
                 }
             })()
         }
