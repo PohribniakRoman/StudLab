@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { ENDPOINTS } from "./ENDPOINTS";
 import { useNotification } from "./hooks/useNotification";
 import Cookies from 'universal-cookie';
+import { useDispatch } from "react-redux";
 const cookies = new Cookies();
 
 export type ProtectedRouterChildren = {
@@ -10,16 +11,34 @@ export type ProtectedRouterChildren = {
 
 export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:ProtectedRouterChildren) => {
     const [isAuthorized,setAuthorized] = useState<null|boolean>(null);
- 
+    const dispatch = useDispatch();
+
     const notifications = useNotification();
     const firstRender = useRef(true)
     useEffect(()=>{
         if(firstRender.current){
             firstRender.current = false;
             (async ()=>{
-                const resp = await (await fetch(ENDPOINTS.person,{method:"POST",body:JSON.stringify({token:cookies.get("token")}), ...ENDPOINTS.params})).json();
-                console.log(resp);
-                setAuthorized(resp);
+                try{
+                const resp = await (await fetch(ENDPOINTS.person,{
+                mode: "cors" as RequestMode,
+                headers:{
+                    "Content-Type":"application/json",
+                    "Authorization":`Bearer ${cookies.get("token")}`}})).json();
+                if(resp){
+                    if(resp[0].id){
+                        dispatch({type:"LOAD_CLIENT",payload:resp[0]})
+                        setAuthorized(true);
+                    }else{
+                        setAuthorized(false)
+                    }
+                }else{
+                    setAuthorized(false)
+                }
+                }catch(e){
+                    setAuthorized(false )
+                    throw e;
+                }
                 notifications.createNotification("Попередження","warning");
                 notifications.createNotification("Успіх","success");
                 notifications.createNotification("Інформація","info");

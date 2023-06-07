@@ -7,6 +7,9 @@ export const ENDPOINTS = {
     join:hostname+"auth/join",
     logout:hostname+"auth/logout",
     person:hostname+"student/personal-info",
+    vacancies:hostname+"vacancies/all",
+    events:hostname+"events/all",
+    favourites:hostname+"favourites/getFavourite",
     params:{
         mode: "cors" as RequestMode,
         headers:{"Content-Type":"application/json"}

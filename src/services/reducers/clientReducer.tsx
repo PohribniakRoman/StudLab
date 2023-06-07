@@ -7,14 +7,6 @@ let defaultState = {
 }
 
 
-export type Client = {
-    name:string,
-    surname:string,
-    email:string,
-    id:string,
-    token:string,
-} 
-
 export const client = (state = defaultState,action:any) => {
     switch (action.type) {
         case "LOAD_CLIENT":{

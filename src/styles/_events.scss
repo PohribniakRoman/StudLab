@@ -8,8 +8,8 @@
     border-radius: 40px;
     margin-top: 80px;
     &__cover{
-        min-width: 420px;
-        height: 420px;
+        max-width: 420px;
+        max-height: 420px;
         margin-top: -60px;
         border-radius: 20px;
         background-color: #000;

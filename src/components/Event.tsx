@@ -1,11 +1,24 @@
-export const Event:React.FC = () => {
+import { decode } from "js-base64"
+import { useEffect, useRef } from "react";
+
+export const Event:React.FC<any> = ({data}:any) => {
+    const cover = useRef<any>();
+    console.log(data);
+    
+    useEffect(()=>{
+        if(cover.current){
+            cover.current.src="data:image/png;base64,"+decode(data.eventPhoto);
+        }
+    },[])
     return <div className="event">
-        <div className="event__cover"></div>
+        <div className="event__cover">
+            <img  ref={cover} style={{width:"100%",height:"100%",borderRadius:"15px"}}/>
+        </div>
         <div className="event__content">
-            <h1 className="event__title">Назва події</h1>
-            <p className="event__description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever s</p>
-            <div className="event__additional">Місце: <b> Київ вулиця універ</b></div>
-            <div className="event__additional">Час: <b>11/00/1111 час 12:00</b></div>
+            <h1 className="event__title">{data.nameOfEvent}</h1>
+            <p className="event__description">{data.description}</p>
+            <div className="event__additional">Місце: <b> {data.venue}</b></div>
+            <div className="event__additional">Дата: <b>{data.date}</b></div>
             <div className="event__controls">
                 <div className="event__discuss"></div>
                 <div className="event__join">
