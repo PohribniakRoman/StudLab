@@ -6,18 +6,10 @@ import { Slider } from "../components/Slider";
 import { UserBar } from "../components/UserBar";
 import { Vacancy } from "../components/Vacancy";
 import { VacancyContainer } from "../components/VacanyContainer";
-import {useState,useEffect} from "react";
-import { ENDPOINTS } from "../services/ENDPOINTS";
+import { useSelector } from "react-redux";
 
 export const Home: React.FC = () => {
-  const [events,loadEvents] = useState<any[]>([]);
-
-  useEffect(()=>{
-    (async ()=>{
-      const resp = await (await fetch(ENDPOINTS.events,{...ENDPOINTS.params})).json();
-      loadEvents([...resp]);
-    })()
-  },[]);
+  const events = useSelector((state:any)=>state.userActivities)
   return (
     <section className="page">
       <NavBar />
@@ -25,8 +17,9 @@ export const Home: React.FC = () => {
       <UserBar />
       <Slider/>
       <EventContainer>
-        {events.map(event=>{
-          return <Event key={event.id} data={event}/>
+        {events.allActivities.map((event:any)=>{
+          const isInMyEvents = events.myActivities.filter((myEvent:any)=>myEvent.id === event.id);
+          return <Event key={event.id} disabled={isInMyEvents.length>0} data={event}/>
         })}
       </EventContainer>
       <VacancyContainer>

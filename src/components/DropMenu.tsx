@@ -11,7 +11,6 @@ export type DropMenuInterface = {
 export const DropMenu:React.FC<DropMenuInterface> = (props:DropMenuInterface) => {
     const notification = useNotification();
     const profile = useSelector((state:any)=>state.client);
-    console.log(profile);
     return <section className={`dropmenu ${props.isActive?"dropactive":""}`}>
         <div className="dropmenu__wrapper">
             <div className="dropmenu__name">Ви увійшли як:<b>{profile.firstName+profile.lastName}</b></div>

@@ -48,15 +48,24 @@
         margin: 10px 0;
         font-weight: 500;
         line-height: 18px;
+        display: -webkit-box;
+        height: 16*28*$lines-to-show;
+        font-size:16px;
+        line-height: 18px;
+        -webkit-line-clamp: $lines-to-show;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     &--additional{
         font-family: 'Montserrat Alternates', sans-serif;
         font-size: 16px;
         font-weight: bold;
         line-height: 18px;
+        width: 90%;
         & b{
             font-weight: 500;
-            letter-spacing: 1.5px;
+            font-size: 14px;
             margin-left: 5px;
             color: #E43050;
         }
@@ -64,7 +73,7 @@
     &--title {
       font-weight: bold;
       font-family: "Montserrat Alternates", sans-serif;
-      font-size: 36px;
+      font-size: 26px;
       margin-top: 50px;
     }
     &--controls{

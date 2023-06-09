@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from "react"
+import { ReactNode, useEffect, useRef, useState } from "react"
 import { ENDPOINTS } from "./ENDPOINTS";
 import { useNotification } from "./hooks/useNotification";
-import Cookies from 'universal-cookie';
 import { useDispatch } from "react-redux";
+import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 export type ProtectedRouterChildren = {
-    Children:React.FC,
-    Failed?:React.FC
+    children:ReactNode,
+    failed?:ReactNode
 }
 
 export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:ProtectedRouterChildren) => {
@@ -51,6 +51,6 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
     }
 
     return (<>
-        {isAuthorized ? <props.Children/> : props.Failed?<props.Failed/>:""}
+        {isAuthorized ? props.children : props.failed?props.failed:""}
     </>)
 }

@@ -9,7 +9,9 @@ export const ENDPOINTS = {
     person:hostname+"student/personal-info",
     vacancies:hostname+"vacancies/all",
     events:hostname+"events/all",
-    favourites:hostname+"favourites/getFavourite",
+    getActivities:hostname+"favourites/getFavourite",
+    addActivitie:hostname+"favourites/add-to-favorites",
+    removeActivitie:hostname+"favourites/remove",
     params:{
         mode: "cors" as RequestMode,
         headers:{"Content-Type":"application/json"}

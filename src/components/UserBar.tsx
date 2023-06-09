@@ -16,16 +16,15 @@ export const UserBar: React.FC = () => {
           placeholder="Що ви шукаєте?"
         />
       </div>
-      <ProtectedRouter Children={Menu} Failed={linkToAuth} />
+      <ProtectedRouter
+        children={<Menu />}
+        failed={
+          <Link to="/auth">
+            <Button variant="field" title="Увійти" />
+          </Link>
+        }
+      />
     </section>
-  );
-};
-
-const linkToAuth: React.FC = () => {
-  return (
-    <Link to="/auth">
-      <Button variant="field" title="Увійти" />
-    </Link>
   );
 };
 
