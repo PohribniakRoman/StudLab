@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { DropMenu } from "./DropMenu"
 import { useState } from "react";
 import { ProtectedRouter } from "../services/protectrdRouter";
+import Button from "./ui-components/Button";
 
 export const UserBar:React.FC = () => {
 
@@ -9,9 +10,14 @@ export const UserBar:React.FC = () => {
         <div className="userbar__search">
             <input type="text" className="userbar__search--input" placeholder="Що ви шукаєте?"/>
         </div>
-        <ProtectedRouter Children={Menu}/>
-        
+        <ProtectedRouter Children={Menu} Failed={linkToAuth}/>
     </section>
+}
+
+const linkToAuth:React.FC = ()=>{
+    return <Link to="/auth">
+        <Button variant="field" title="Увійти"/>
+    </Link>
 }
 
 const Menu = ()=>{

@@ -7,6 +7,7 @@ const cookies = new Cookies();
 
 export type ProtectedRouterChildren = {
     Children:React.FC,
+    Failed?:React.FC
 }
 
 export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:ProtectedRouterChildren) => {
@@ -54,6 +55,6 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
     }
 
     return (<>
-        {isAuthorized ? <props.Children/> :""}
+        {isAuthorized ? <props.Children/> : props.Failed?<props.Failed/>:""}
     </>)
 }
