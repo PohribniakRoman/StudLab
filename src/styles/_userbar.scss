@@ -117,6 +117,16 @@
             background-color: rgb(226, 226, 226);
         }
     }
+    &__name{
+        padding: 15px 20px;
+        font-size: 14px;
+        border-bottom: 1px solid lightblue;
+        & b{
+            margin-top: 3px;
+            display: block;
+            font-size: 16px;
+        }
+    }
 }
 .dropmenu.dropactive{
     grid-template-rows: 1fr;

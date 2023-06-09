@@ -40,10 +40,6 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
                     setAuthorized(false )
                     throw e;
                 }
-                notifications.createNotification("Попередження","warning");
-                notifications.createNotification("Успіх","success");
-                notifications.createNotification("Інформація","info");
-                notifications.createNotification("Помилка 404/etc","error");
             })();
         }
     },[])

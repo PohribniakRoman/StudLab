@@ -4,8 +4,6 @@ import { ProtectedRouter } from "../services/protectrdRouter";
 
 export const Event: React.FC<any> = ({ data }: any) => {
   const cover = useRef<any>();
-  console.log(data);
-
   useEffect(() => {
     if (cover.current) {
       cover.current.src = "data:image;base64," + decode(data.eventPhoto);
