@@ -36,9 +36,8 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
                 }else{
                     setAuthorized(false)
                 }
-                }catch(e){
-                    setAuthorized(false )
-                    throw e;
+                }catch{
+                    setAuthorized(false)
                 }
             })();
         }

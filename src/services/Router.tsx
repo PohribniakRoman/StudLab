@@ -10,13 +10,14 @@ import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { ENDPOINTS } from "./ENDPOINTS";
+import { useNotification } from "./hooks/useNotification";
 const cookies = new Cookies();
 
 export const Router:React.FC = () => {
     const dispatch = useDispatch();
-    const state = useSelector((state:any)=>state.userActivities)
+    const currentState = useSelector((state:any)=>state.userActivities)
     React.useEffect(()=>{
-        const defaultState = {...state};
+        const defaultState = {...currentState};
         (async () => {
             const respAll = await (
                 await fetch(ENDPOINTS.events, {
@@ -27,7 +28,6 @@ export const Router:React.FC = () => {
                 })).json();
                 defaultState.allActivities = respAll;
                 try{
-
                     const resp = await (
                         await fetch(ENDPOINTS.getActivities, {
                         mode: "cors" as RequestMode,
@@ -37,8 +37,8 @@ export const Router:React.FC = () => {
                         },
                     })).json();
                     defaultState.myActivities = resp;
-                }catch(e){
-                    throw e;
+                }catch{
+                    useNotification().createNotification("Failed to log in","error")
                 }
                 dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
         })();
