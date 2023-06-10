@@ -18,14 +18,6 @@ export const Router:React.FC = () => {
     React.useEffect(()=>{
         const defaultState = {...state};
         (async () => {
-            const resp = await (
-                await fetch(ENDPOINTS.getActivities, {
-                    mode: "cors" as RequestMode,
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${cookies.get("token")}`,
-                    },
-                })).json();
             const respAll = await (
                 await fetch(ENDPOINTS.events, {
                     mode: "cors" as RequestMode,
@@ -34,7 +26,20 @@ export const Router:React.FC = () => {
                     },
                 })).json();
                 defaultState.allActivities = respAll;
-                defaultState.myActivities = resp;
+                try{
+
+                    const resp = await (
+                        await fetch(ENDPOINTS.getActivities, {
+                        mode: "cors" as RequestMode,
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${cookies.get("token")}`,
+                        },
+                    })).json();
+                    defaultState.myActivities = resp;
+                }catch(e){
+                    throw e;
+                }
                 dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
         })();
     },[])
