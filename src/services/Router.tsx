@@ -27,20 +27,21 @@ export const Router:React.FC = () => {
                     },
                 })).json();
                 defaultState.allActivities = respAll;
+                dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
                 try{
                     const resp = await (
                         await fetch(ENDPOINTS.getActivities, {
-                        mode: "cors" as RequestMode,
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${cookies.get("token")}`,
-                        },
-                    })).json();
+                            mode: "cors" as RequestMode,
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${cookies.get("token")}`,
+                            },
+                        })).json();
                     defaultState.myActivities = resp;
-                }catch{
-                    useNotification().createNotification("Failed to log in","error")
+                    dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
+                }catch(e){
+                    console.info(e);
                 }
-                dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
         })();
     },[])
 
