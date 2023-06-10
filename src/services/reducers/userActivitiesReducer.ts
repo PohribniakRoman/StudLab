@@ -6,13 +6,15 @@ interface ActivitieManager {
     allActivities: any[], 
     myActivities: any[], 
     today: any[], 
-    date: string
+    date: string,
+    current:any
 }
 
 const defaultState = { 
     allActivities: [], 
     myActivities:[],
     today: [], 
+    current:{},
     date: new Date().toDateString(),
 } as ActivitieManager;
 
@@ -57,8 +59,10 @@ export const userActivities = (state:ActivitieManager = defaultState, action:any
             return updateToday(newState);
         }
         case "LOAD_ACTIVITY":{
-            
             return updateToday(action.payload)
+        }
+        case "LOAD_CURRENT":{
+            return {...state,current:action.payload}
         }
         default: {
             return updateToday({...state});

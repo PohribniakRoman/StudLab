@@ -21,8 +21,7 @@ export const ActivitiesEvent:React.FC<{data:any}> = ({data}:any) =>{
             <div className="activities__event--additional">Місце: <b> {data.venue}</b></div>
             <div className="activities__event--additional">Час: <b>{new Date(data.date).toDateString()}</b></div>
             <div className="activities__event--controls">
-                <div className="activities__event--discuss"></div>
-                <div className="activities__event--like"></div>
+                <div className="activities__event--discuss" onClick={()=>dispatch({type:"LOAD_CURRENT",payload:data})}></div>
                 <div className="activities__event--delete" onClick={()=>{
                     dispatch({type:"REMOVE_ACTIVITY",payload:data.id})
                 }}></div>

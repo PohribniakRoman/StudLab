@@ -12,20 +12,25 @@ $lines-to-show: 5;
     border-radius: 40px;
     margin-top: 80px;
     &__cover{
+        min-width: 420px;
+        min-height: 420px;
+        object-fit: cover;
+        background: linear-gradient(106.54deg, rgba(205, 255, 231, 0.8) 3.61%, rgba(208, 235, 255, 0.8) 40.26%, rgba(181, 220, 255, 0.8) 69.88%, rgba(185, 192, 255, 0.8) 100%);
         max-width: 420px;
         max-height: 420px;
         margin-top: -60px;
         border-radius: 20px;
-        background-color: #000;
         border: 5px solid #E43050;
         filter: drop-shadow(0px 11px 21px rgba(206, 33, 64, 0.31));
+    }
+    &__content{
+        margin-left: 50px;
     }
     &__title{
         font-weight: bold;
         font-family: 'Montserrat Alternates', sans-serif;
         font-size: 36px;
         margin-top: 40px;
-        margin-left: 50px;
     }
     &__description{
         display: -webkit-box;
@@ -38,18 +43,17 @@ $lines-to-show: 5;
         text-overflow: ellipsis;
         font-size: 20px;
         width: 80%;
-        font-weight: 500;
+        margin: 25px 0;
         height: auto;
-        margin: 30px;
-        margin-left: 50px;
         line-height: 22px;
     }
     &__additional{
         font-family: 'Montserrat Alternates', sans-serif;
-        margin-left: 50px;
         font-size: 16px;
         font-weight: bold;
         line-height: 18px;
+        margin-top: 5px;
+        width: 80%;
         & b{
             font-weight: 500;
             letter-spacing: 1.5px;
@@ -59,7 +63,6 @@ $lines-to-show: 5;
     }
     &__controls{
         margin-top: 50px;
-        margin-left: 50px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -110,5 +113,117 @@ $lines-to-show: 5;
         width: 1500px;
         background: rgba(255, 255, 255, 0.5);
         border-radius: 101px;
+    }
+}
+.modal{
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    background-color: rgba(0, 0,0, 0.2);
+    &__event{
+        padding: 30px;
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 40px;
+        display: flex;
+        &-cover{
+            width: 420px;
+            height: 420px;
+            object-fit: cover;
+            background: linear-gradient(106.54deg, rgba(205, 255, 231, 0.8) 3.61%, rgba(208, 235, 255, 0.8) 40.26%, rgba(181, 220, 255, 0.8) 69.88%, rgba(185, 192, 255, 0.8) 100%);
+        }
+        &-content{
+            margin-left: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        &-title{
+            font-size: 36px;
+            font-weight: bold;
+        }
+        &-description{
+            margin: 20px 0;
+            width: 80%;
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+    &__comments{
+        overflow-y: scroll;
+        max-height: 35vh;
+        width: 65%;
+        padding: 30px;
+        border-radius:20px;
+        margin: 20px auto;
+        background-color: #fff;
+        &-avatar{
+            width: 70px;
+            height: 70px;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+        &-report{
+            position: absolute;
+            cursor: pointer;
+            right: 0;
+            color: lightgray;
+            top: 0;
+            &:hover{
+                color: #E43050;
+            }
+        }
+        &-content{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        &-item{
+            min-width: 100%;
+            position: relative;
+            display: flex;
+            margin: 25px 0;
+        }
+        &-title{
+            margin-bottom: 7px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    }
+}
+.report{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0,0, 0.2);
+    z-index: 1;
+    @include flex-center;
+    &__content{
+        padding: 30px;
+        border-radius: 20px;
+        display: inline-block;
+        background-color: #fff;
+        & h1{
+            font-size: 24px;
+            font-weight: bold;
+        }
+        &-select{
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            cursor: pointer;
+            margin: 20px;
+            margin-left: 10px;
+            & p{
+                font-size: 18px;
+            }
+        }
+        &-controls{
+            margin-top: 30px;
+            display: flex;  
+            justify-content: space-between;
+        }
     }
 }

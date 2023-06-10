@@ -10,7 +10,7 @@ import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { ENDPOINTS } from "./ENDPOINTS";
-import { useNotification } from "./hooks/useNotification";
+import { EventModal } from "../components/EventModal";
 const cookies = new Cookies();
 
 export const Router:React.FC = () => {
@@ -46,6 +46,7 @@ export const Router:React.FC = () => {
     },[])
 
 return  <BrowserRouter>
+        <EventModal/>
         <Routes>
             <Route path="/auth" element={<Auth/>}/>
             <Route path="/rules" element={<Rules/>}/>
