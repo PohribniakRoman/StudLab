@@ -6,22 +6,24 @@ interface ActivitieManager {
     allActivities: any[], 
     myActivities: any[], 
     today: any[], 
-    date: number 
+    date: string
 }
+
 const defaultState = { 
     allActivities: [], 
     myActivities:[],
     today: [], 
-    date: new Date().getDay() 
+    date: new Date().toDateString(),
 } as ActivitieManager;
 
 const updateToday = (state:any) => {
     state.today = [];
     state.myActivities.forEach((activity:any)=>{
-    if(activity.date === state.date){
+    if(new Date(activity.date).toDateString() === state.date){
             state.today.push(activity);
         }
     })
+    return state;
 }
 
 export const userActivities = (state:ActivitieManager = defaultState, action:any) => {
@@ -33,10 +35,10 @@ export const userActivities = (state:ActivitieManager = defaultState, action:any
                 headers: { ...ENDPOINTS.params.headers,
                   Authorization: `Bearer ${cookies.get("token")}` },
                 });
-            updateToday(state);
-    
-            const newState = state.myActivities.filter((activity: any) => activity.id !== action.payload)
-            return {...state,myActivities:newState};
+                
+            const newState = state.myActivities.filter((activity: any) => activity.id !== action.payload);
+            const loadState = {...state,myActivities:newState}; 
+            return updateToday(loadState);
         }
         case "ADD_ACTIVITY":{
             fetch(ENDPOINTS.addActivitie + "?eventId=" + action.payload.id, {
@@ -46,15 +48,20 @@ export const userActivities = (state:ActivitieManager = defaultState, action:any
                   Authorization: `Bearer ${cookies.get("token")}` },
                 });
             const newState = {...state};
-            updateToday(newState);
             newState.myActivities.push(action.payload);
-            return newState;
+            return updateToday(newState);
+        }
+        case "LOAD_DATE":{
+            const newState = {...state};
+            newState.date = action.payload;
+            return updateToday(newState);
         }
         case "LOAD_ACTIVITY":{
-            return action.payload
+            
+            return updateToday(action.payload)
         }
         default: {
-            return state;
+            return updateToday({...state});
         }
     }
 }

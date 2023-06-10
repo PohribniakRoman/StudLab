@@ -19,7 +19,7 @@ export const ActivitiesEvent:React.FC<{data:any}> = ({data}:any) =>{
             <h1 className="activities__event--title">{data.nameOfEvent}</h1>
             <p className="activities__event--description">{data.description}</p>
             <div className="activities__event--additional">Місце: <b> {data.venue}</b></div>
-            <div className="activities__event--additional">Час: <b>{data.date}</b></div>
+            <div className="activities__event--additional">Час: <b>{new Date(data.date).toDateString()}</b></div>
             <div className="activities__event--controls">
                 <div className="activities__event--discuss"></div>
                 <div className="activities__event--like"></div>

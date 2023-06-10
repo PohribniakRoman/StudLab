@@ -44,7 +44,7 @@ const Menu = () => {
         className="userbar__avatar"
         onClick={() => setMenuOpened(!isMenuOpened)}
       >
-        <div className="userbar__avatar--img">
+        <div className="userbar__avatar--img" style={{backgroundSize:"cover",backgroundPosition:"center",backgroundRepeat:"no-repeat",backgroundImage:"url(https://cdn-icons-png.flaticon.com/256/3135/3135715.png)"}}>
           {profile.photoBytes !== null ? (
             <img
               src={decode(profile.photoBytes)}

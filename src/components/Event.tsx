@@ -1,10 +1,10 @@
 import { decode } from "js-base64";
 import { ProtectedRouter } from "../services/protectrdRouter";
 import { useDispatch } from "react-redux";
+import Button from "./ui-components/Button";
 
 
 export const Event: React.FC<any> = ({ data,disabled }: any) => {
-  console.log(new Date(data.date));
   return (
     <div className="event">
       <div className="event__cover">
@@ -37,11 +37,13 @@ export const Controls = ({ data,disabled }: any) => {
           Місце: <b> {data.venue}</b>
         </div>
         <div className="event__additional">
-          Дата: <b>{data.date}</b>
+          Дата: <b>{new Date(data.date).toDateString()}</b>
         </div>
     <div className="event__controls">
       <div className="event__discuss"></div>
-      {disabled?<div className="event__subscribe">Ви вже підписані на подію</div>:
+      {disabled?<Button title="Відмовитись від події" onClick={() => {
+          dispatch({type:"REMOVE_ACTIVITY",payload:data.id})
+          }}/>:
       <div
         className="event__join"
         onClick={() => {

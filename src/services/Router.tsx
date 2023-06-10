@@ -35,12 +35,7 @@ export const Router:React.FC = () => {
                 })).json();
                 defaultState.allActivities = respAll;
                 defaultState.myActivities = resp;
-                defaultState.myActivities.forEach((activity:any)=>{
-                if(activity.date === defaultState.date){
-                    defaultState.today.push(activity);
-                }
-            })
-            dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
+                dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
         })();
     },[])
 
