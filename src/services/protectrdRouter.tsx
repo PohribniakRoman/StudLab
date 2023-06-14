@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useRef, useState } from "react"
 import { ENDPOINTS } from "./ENDPOINTS";
-import { useNotification } from "./hooks/useNotification";
 import { useDispatch } from "react-redux";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();

@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react"
 import { decode } from "js-base64"
 import { Comment } from "./Comment"
 import { ReportModal } from "./ReportModal"
+import {RxCross1} from "react-icons/rx";
+
 
 export const EventModal = () => {
     const events = useSelector((state:any)=>state.userActivities)
@@ -34,6 +36,8 @@ export const EventModal = () => {
                 ?<Button style={{margin:"20px 0",width:"150px"}} onClick={()=>dispatch({type:"REMOVE_ACTIVITY",payload:loadedData.id})} title="Відмовитись"/>
                 :<Button style={{margin:"20px 0",width:"150px"}} onClick={() =>dispatch({type:"ADD_ACTIVITY",payload:loadedData})} title="Відвідати!" variant="field"/>}
             </div>
+            <div className="modal__edit-close" onClick={()=>dispatch({type:"LOAD_CURRENT",payload:{}})}><RxCross1/></div>
+            
         </section>
         <section className="modal__comments">
               <Comment reportToggle={setReportOpen}/>

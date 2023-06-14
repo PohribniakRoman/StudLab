@@ -12,6 +12,7 @@ import React from "react";
 import { ENDPOINTS } from "./ENDPOINTS";
 import { EventModal } from "../components/EventModal";
 import { PublicPorofile } from "../pages/PublickProfile";
+import { EditModal } from "../components/EditModal";
 const cookies = new Cookies();
 
 export const Router:React.FC = () => {
@@ -48,6 +49,7 @@ export const Router:React.FC = () => {
 
 return  <BrowserRouter>
         <EventModal/>
+        <EditModal/>
         <Routes>
             <Route path="/auth" element={<Auth/>}/>
             <Route path="/rules" element={<Rules/>}/>

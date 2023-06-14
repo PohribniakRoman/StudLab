@@ -4,7 +4,17 @@
   margin: 20px;
   height: 200px;
   background-color: #fff;
-  border-radius: 41px;
+  border-radius: 31px;
+  position: relative;
+  &__edit{
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+    position: absolute;
+    &:hover{
+      color: #e43050;
+    }
+  }
   &__title {
     margin-bottom: 20px;
     font-size: 30px;

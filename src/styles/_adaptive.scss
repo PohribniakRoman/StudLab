@@ -21,15 +21,15 @@
       width: 1300px;
     }
   }
-  .page__wrapper-box {
-    flex-direction: column;
-    align-items: center;
-  }
   .page__wrapper-item {
     margin: 0px;
   }
 }
 @media (max-width: 1500px) {
+  .page__wrapper-box {
+    flex-direction: column;
+    align-items: center;
+  }
   .auth__form--input-container-register-rights {
     width: 88%;
   }

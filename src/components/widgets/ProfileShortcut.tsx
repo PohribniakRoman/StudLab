@@ -1,10 +1,12 @@
 import React from "react"
 import { PhotoInput } from "../ui-components/PhotoInput"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { decode } from "js-base64";
+import { AiFillEdit } from "react-icons/ai";
 
 export const ProfileShortcut:React.FC = () =>{
     const profile = useSelector((state:any)=>state.client);
+    const dispatch = useDispatch();
     let url:any = "";
     if(profile.photoBytes !== null && profile.photoBytes){
       url = decode(profile.photoBytes);
@@ -34,6 +36,9 @@ export const ProfileShortcut:React.FC = () =>{
                     <i>Київський національний університет</i>
                 </p>
             </div>
+            <div className="profile__edit" onClick={()=>{
+                dispatch({type:"SET_EDIT",payload:true})
+            }}><AiFillEdit/></div>
         </div>
     </section>
 }
