@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { ENDPOINTS } from "./ENDPOINTS";
 import { EventModal } from "../components/EventModal";
+import { PublicPorofile } from "../pages/PublickProfile";
 const cookies = new Cookies();
 
 export const Router:React.FC = () => {
@@ -40,7 +41,7 @@ export const Router:React.FC = () => {
                     defaultState.myActivities = resp;
                     dispatch({type:"LOAD_ACTIVITY",payload:defaultState})
                 }catch(e){
-                    console.info(e);
+                    throw e;
                 }
         })();
     },[])
@@ -53,6 +54,7 @@ return  <BrowserRouter>
             <Route path="/events" element={<EventPage/>}/>
             <Route path="/profile" element={<ProtectedRouter children={<Profile/>}/>}/>
             <Route path="/" element={<Home/>}/>
+            <Route path="/profile/:username" element={<PublicPorofile/>}/>
             <Route path="*" element={<Page404/>}/>
         </Routes>
     </BrowserRouter>

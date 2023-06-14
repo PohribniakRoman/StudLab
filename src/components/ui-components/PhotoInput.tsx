@@ -7,7 +7,6 @@ export const PhotoInput: React.FC<any> = ({
   withLoad = true,
   withLabel = true,
   defultAvatar = "",
-  isImg = false,
   source = "",
 }) => {
   const [avatar, setAvatar] = useState<string>(defultAvatar);
@@ -27,32 +26,10 @@ export const PhotoInput: React.FC<any> = ({
                 setAvatar(reader.result as string);
               };
               reader.readAsDataURL(file);
-            }
-          }}
-        />
-      ) : (
-        ""
-      )}
-      <div
-        className="auth__form--avatar"
-        style={{ backgroundImage: `url("${avatar}")` }}
-      >
-        {isImg ? (
-          <img
-            src={source}
-            style={{
-              userSelect: "none",
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              borderRadius: "50%",
-              margin: "-1px -1px 0 0",
-            }}
-          />
-        ) : (
-          ""
-        )}
-      </div>
+            }}}/>):""}
+            <div className="auth__form--avatar-border" style={{backgroundImage:`url("${avatar}")`}}>
+              <img src={source} className="auth__form--avatar" style={{zIndex:`${avatar?"-1":""}`}}/>
+            </div>
       {withLabel ? (
         <Subtitle className="auth__form--input-title" title="Фото" />
       ) : (

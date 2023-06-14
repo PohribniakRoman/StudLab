@@ -1,133 +1,162 @@
-.userbar{
-    user-select: none;
-    display: flex;
-    margin: 20px;
-    width: 90%;
+.userbar {
+  user-select: none;
+  display: flex;
+  margin: 20px;
+  width: 90%;
+  @include flex-center;
+  justify-content: space-around;
+  &__container {
     @include flex-center;
-    justify-content: space-around;     
-    &__container{
-        @include flex-center;
-        justify-content: center;
-        border-radius: 18px;
-        background-color: #fff;     
-    }
-    &__search{
-        width: 75%;
-        &--input{
-            padding: 0 30px;
-            font-size: 20px;
-            font-family: 'Montserrat Alternates', sans-serif;
-            width: 94%;
-            border: none;
-            border-radius: 18px;
-            height: 52px;
-            text-align: center;
-            outline: none;
-        }
-        &::placeholder{
-            font-family: 'Montserrat Alternates', sans-serif;
-            font-size: 20px;
-        }
-    }
-    &__icon{
-        cursor: pointer;
-        @include flex-center;
-        width: 82px;
-        height: 52px;
-        border-radius: 18px;
-        & div{
-            width: 24px;
-            height: 24px;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-        }
-        &--comment{
-            background-image: url(../assets/CommentsIcon.svg);
-        }
-        &--bell{
-            background-image: url(../assets/BellIcon.svg);
-        }
-        &--exit{
-            background-image: url(../assets/ExitIcon.svg);
-        }
-    }
-    &__avatar{
-        background-color: #fff;
-        @include flex-center;
-        cursor: pointer;
-        justify-content: space-around;
-        width: 90px;
-        height: 40px;
-        border-radius: 18px;
-        padding: 10px;
-        &--img{
-            width: 40px;
-            height: 40px;
-            background: #000;
-            border-radius: 50%;
-        }
-        &--icon{
-            &-more{
-                width: 16px;
-                height: 8px;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;
-                background-image: url(../assets/AvatarMoreIcon.svg);
-            }
-        }
-    }
-}
-.notified{
+    justify-content: center;
+    border-radius: 18px;
+    background-color: #fff;
+  }
+  &__search {
+    width: 75%;
     position: relative;
-    &::before{
-        content: '';
-        position: absolute;
-        right: 2px;
-        top: 2px;
-        background-color: #E43050;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
+    z-index: 1;
+    &--input {
+      padding: 0 30px;
+      font-size: 20px;
+      font-family: "Montserrat Alternates", sans-serif;
+      width: 94%;
+      border: none;
+      border-radius: 18px;
+      height: 52px;
+      text-align: center;
+      outline: none;
     }
+    &--input:focus + .userbar__search--helper {
+      display: block !important;
+    }
+    &--helper {
+      display: none;
+      max-height: 280px;
+      overflow: hidden;
+      margin-top: 5px;
+      position: absolute;
+      width: 99%;
+      border-radius: 20px;
+      background-color: #fff;
+      -webkit-box-shadow: 0px 7px 16px -2px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 7px 16px -2px rgba(0,0,0,0.75);
+      box-shadow: 0px 7px 16px -2px rgba(0,0,0,0.75);
+      &:hover {
+        display: block;
+      }
+      &-item {
+        border-radius: 20px;
+        cursor: pointer;
+        padding: 20px;
+        &:hover {
+          background-color: lightblue;
+        }
+      }
+    }
+    &::placeholder {
+      font-family: "Montserrat Alternates", sans-serif;
+      font-size: 20px;
+    }
+  }
+  &__icon {
+    cursor: pointer;
+    @include flex-center;
+    width: 82px;
+    height: 52px;
+    border-radius: 18px;
+    & div {
+      width: 24px;
+      height: 24px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+    }
+    &--comment {
+      background-image: url(../assets/CommentsIcon.svg);
+    }
+    &--bell {
+      background-image: url(../assets/BellIcon.svg);
+    }
+    &--exit {
+      background-image: url(../assets/ExitIcon.svg);
+    }
+  }
+  &__avatar {
+    background-color: #fff;
+    @include flex-center;
+    cursor: pointer;
+    justify-content: space-around;
+    width: 90px;
+    height: 40px;
+    border-radius: 18px;
+    padding: 10px;
+    &--img {
+      width: 40px;
+      height: 40px;
+      background: #000;
+      border-radius: 50%;
+    }
+    &--icon {
+      &-more {
+        width: 16px;
+        height: 8px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-image: url(../assets/AvatarMoreIcon.svg);
+      }
+    }
+  }
+}
+.notified {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    background-color: #e43050;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
 }
 
-.dropmenu{
-    display: grid;
-    grid-template-rows: 0fr;
-    overflow: hidden;
-    transition: 200ms;
-    position: absolute;
-    right: 0;
-    transform: translate(-45%,50%);
-    margin-top: 65px;
-    z-index: 100;
-    box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.31);
-    border-radius: 20px;
-    &__wrapper{
-        background-color: #fff;
-        width: 250px;
-        min-height: 0;
+.dropmenu {
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  transition: 200ms;
+  position: absolute;
+  right: 0;
+  transform: translate(-45%, 50%);
+  margin-top: 65px;
+  z-index: 100;
+  box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.31);
+  border-radius: 20px;
+  &__wrapper {
+    background-color: #fff;
+    width: 250px;
+    min-height: 0;
+  }
+  &__item {
+    padding: 20px;
+    &:hover {
+      cursor: pointer;
+      background-color: rgb(226, 226, 226);
     }
-    &__item{
-        padding: 20px;
-        &:hover{
-            cursor: pointer;
-            background-color: rgb(226, 226, 226);
-        }
+  }
+  &__name {
+    padding: 15px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid lightblue;
+    & b {
+      margin-top: 3px;
+      display: block;
+      font-size: 16px;
     }
-    &__name{
-        padding: 15px 20px;
-        font-size: 14px;
-        border-bottom: 1px solid lightblue;
-        & b{
-            margin-top: 3px;
-            display: block;
-            font-size: 16px;
-        }
-    }
+  }
 }
-.dropmenu.dropactive{
-    grid-template-rows: 1fr;
+.dropmenu.dropactive {
+  grid-template-rows: 1fr;
 }

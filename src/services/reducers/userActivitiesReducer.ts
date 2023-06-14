@@ -49,7 +49,7 @@ export const userActivities = (state:ActivitieManager = defaultState, action:any
                 headers: { ...ENDPOINTS.params.headers,
                   Authorization: `Bearer ${cookies.get("token")}` },
                 });
-            const newState = {...state};
+            const newState = JSON.parse(JSON.stringify(state));
             newState.myActivities.push(action.payload);
             return updateToday(newState);
         }

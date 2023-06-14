@@ -216,6 +216,9 @@
   }
 }
 @media (max-width: 900px) {
+  .vacancy__container--header{
+    text-align: center;
+  }
   .footer {
     &__wrapper {
       flex-direction: column;
