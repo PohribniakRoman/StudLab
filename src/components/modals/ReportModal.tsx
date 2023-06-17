@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import Button from "./ui-components/Button";
+import Button from "../ui-components/Button";
 
 export const ReportModal = ({data,isOpened,setOpen}:any) =>{
     const reportRef = useRef<any>();

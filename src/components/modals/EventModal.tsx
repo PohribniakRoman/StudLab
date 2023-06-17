@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import Button from "./ui-components/Button"
+import Button from "../ui-components/Button"
 import { useEffect, useRef, useState } from "react"
 import { decode } from "js-base64"
 import { Comment } from "./Comment"

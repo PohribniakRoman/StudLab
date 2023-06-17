@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Footer } from "../components/Footer"
-import { NavBar } from "../components/NavBar"
+import { NavBar } from "../components/menu/NavBar"
 import { UserBar } from "../components/UserBar"
 import { ENDPOINTS } from "../services/ENDPOINTS"
 import { useParams } from "react-router-dom"

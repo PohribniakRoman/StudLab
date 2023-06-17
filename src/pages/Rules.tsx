@@ -1,5 +1,5 @@
 import { Footer } from "../components/Footer"
-import { Logo } from "../components/logo"
+import { Logo } from "../components/menu/logo"
 
 export const Rules:React.FC = () =>{
     return <section className="rules" style={{position:"relative"}}>

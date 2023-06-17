@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useNotification } from "../services/hooks/useNotification"
+import { useNotification } from "../../services/hooks/useNotification"
 import Cookies from 'universal-cookie';
 import { useSelector } from "react-redux";
 const cookies = new Cookies();

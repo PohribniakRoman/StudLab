@@ -1,9 +1,9 @@
 import { Logo } from "./logo"
-import HomeIconSVG from "../assets/HomeIcon.svg";
-import CalendarIconSVG from "../assets/CalendarIcon.svg";
-import CaseIconSVG from "../assets/CaseIcon.svg";
-import RecommendationsIconSVG from "../assets/RecommendationsIcon.svg";
-import AboutUsIconSVG from "../assets/AboutUsIcon.svg";
+import HomeIconSVG from "../../assets/HomeIcon.svg";
+import CalendarIconSVG from "../../assets/CalendarIcon.svg";
+import CaseIconSVG from "../../assets/CaseIcon.svg";
+import RecommendationsIconSVG from "../../assets/RecommendationsIcon.svg";
+import AboutUsIconSVG from "../../assets/AboutUsIcon.svg";
 import { Link, useLocation } from "react-router-dom";
 
 export const NavBar:React.FC = () => {

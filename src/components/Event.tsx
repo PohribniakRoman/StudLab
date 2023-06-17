@@ -7,7 +7,9 @@ import Button from "./ui-components/Button";
 export const Event: React.FC<any> = ({ data,disabled }: any) => {
   return (
     <div className="event">
-      <img src={"data:image;base64," + decode(data.eventPhoto)} className="event__cover"/>
+      <div className="event__cover--wrapper">
+        <img src={"data:image;base64," + decode(data.eventPhoto)} className="event__cover"/>
+      </div>
       <div className="event__content">
         <h1 className="event__title">{data.nameOfEvent}</h1>
         <p className="event__description">{data.description}</p>

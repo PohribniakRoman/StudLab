@@ -1,4 +1,4 @@
-import { Logo } from "./logo"
+import { Logo } from "./menu/logo"
 import { InstaLogo } from "./ui-components/InstaLogo"
 import { WebLabLogo } from "./ui-components/WebLabLogo"
 

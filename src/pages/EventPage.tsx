@@ -1,7 +1,7 @@
 import { Event } from "../components/Event";
 import { EventContainer } from "../components/EventContainer";
 import { Footer } from "../components/Footer";
-import { NavBar } from "../components/NavBar";
+import { NavBar } from "../components/menu/NavBar";
 import { UserBar } from "../components/UserBar";
 import { useSelector } from "react-redux";
 

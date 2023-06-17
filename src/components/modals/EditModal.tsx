@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useRef,useState,useEffect } from "react";
-import { PhotoInput } from "./ui-components/PhotoInput";
-import Button from "./ui-components/Button";
-import AuthFormInput from "./ui-components/AuthFormInput";
-import { Subtitle } from "./ui-components/Subtitle";
+import { PhotoInput } from "../ui-components/PhotoInput";
+import Button from "../ui-components/Button";
+import AuthFormInput from "../ui-components/AuthFormInput";
+import { Subtitle } from "../ui-components/Subtitle";
 import {RxCross1} from "react-icons/rx";
-import { ENDPOINTS } from "../services/ENDPOINTS";
+import { ENDPOINTS } from "../../services/ENDPOINTS";
 import Cookies from 'universal-cookie';
-import { useNotification } from "../services/hooks/useNotification";
+import { useNotification } from "../../services/hooks/useNotification";
 const cookies = new Cookies();
 
 export const EditModal:React.FC = ()=>{
@@ -23,8 +23,6 @@ export const EditModal:React.FC = ()=>{
     if(!isModalUpdated){
         return <></>
     }
-
-
 
     return <section className="modal" ref={modalRef} onClick={(e)=>{e.target === modalRef.current && dispatch({type:"SET_EDIT",payload:false})}}>
         <form className="modal__edit" onSubmit={(event)=>{

@@ -1,5 +1,5 @@
 import { Footer } from "../components/Footer"
-import { NavBar } from "../components/NavBar"
+import { NavBar } from "../components/menu/NavBar"
 import { UserBar } from "../components/UserBar"
 import { Activities } from "../components/widgets/Activities"
 import { Calendar } from "../components/widgets/Calendar"

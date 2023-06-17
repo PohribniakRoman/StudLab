@@ -6,7 +6,7 @@ import { Registrate } from "../components/Form/Registrate";
 import { Mail } from "../components/Form/Mail";
 import { Code } from "../components/Form/Code";
 import { Login } from "../components/Form/Login";
-import { Logo } from "../components/logo";
+import { Logo } from "../components/menu/logo";
 
 
 export const MailContext = createContext([""])

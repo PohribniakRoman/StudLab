@@ -10,9 +10,9 @@ import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { ENDPOINTS } from "./ENDPOINTS";
-import { EventModal } from "../components/EventModal";
+import { EventModal } from "../components/modals/EventModal";
 import { PublicPorofile } from "../pages/PublickProfile";
-import { EditModal } from "../components/EditModal";
+import { EditModal } from "../components/modals/EditModal";
 const cookies = new Cookies();
 
 export const Router:React.FC = () => {
