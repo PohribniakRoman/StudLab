@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const month = "січень, лютий, березень, квітень, травень, червень, липень, серпень, вересень, жовтень, листопад, грудень".split(", ");
@@ -10,13 +10,18 @@ type CalendarInterface = {
     date:string,
     current:boolean,
     badge:number,
-    evented:boolean
+    evented:boolean,
+    isMarker:boolean
 }
+
+const marker = {
+    isMarker:true
+}as CalendarInterface;
 
 export const Calendar:React.FC = () => {
     const activities = useSelector((state:any)=>state.userActivities.myActivities)
     const dispatch = useDispatch();
-    const [calendarData,setCalendar] = useState<CalendarInterface[]>([]);
+    const [calendarData,setCalendar] = useState<CalendarInterface[]>([marker]);
     useEffect(()=>{
         const defultState:CalendarInterface[] = [];
         for (let i = 0; i < days.length; i++) {
@@ -30,6 +35,7 @@ export const Calendar:React.FC = () => {
                 badge,
                 current:i===0,
                 evented:isEvented,
+                isMarker:false
             })
         } 
         setCalendar([...defultState]);
@@ -39,27 +45,34 @@ export const Calendar:React.FC = () => {
         dispatch({type:"LOAD_DATE",payload:newDate})
     } 
 
+    if(calendarData[0].isMarker === true){
+        return <div v-if="loading" className="spinner">
+        <div className="rect1"></div>
+        <div className="rect2"></div>
+        <div className="rect3"></div>
+        <div className="rect4"></div>
+        <div className="rect5"></div>
+      </div>
+    }
+
     const slideRightCalendar = (ind:number) => {
-        setCalendar(prev=>{
-            prev[ind].current = false;
-            prev[ind+1>6?0:ind+1].current = true;
-            changeDate(prev[ind+1>6?0:ind+1].date);
-            return [...prev];
-        })
+            setCalendar((prev)=>{
+                prev[ind].current = false;
+                prev[ind+1>6?0:ind+1].current = true;
+                return [...prev];
+            })
+        changeDate(calendarData[ind+1>6?0:ind+1].date);
     }
     
     const slideLeftCalendar = (ind:number) => {
         setCalendar(prev=>{
             prev[ind].current = false;
             prev[ind-1<0?6:ind-1].current = true;
-            changeDate(prev[ind-1<0?6:ind-1].date);
             return [...prev];
         })
+        changeDate(calendarData[ind-1<0?6:ind-1].date)
     }
     
-    if(!activities.length){
-        return <>loading...</>
-    }
 
     return <section className="calendar">
         <div className="calendar__arrow calendar__arrow--left" onClick={()=>{
@@ -72,9 +85,9 @@ export const Calendar:React.FC = () => {
                         setCalendar(prev=>{
                             prev[calendarData.findIndex(el=>el.current)].current = false;
                             prev[ind].current = true;
-                            changeDate(prev[ind].date);
                             return [...prev];
                         })
+                        changeDate(calendarData[ind].date);
                     }}>
                         <div className={`calendar__label--date ${el.evented?"evented":""}`}>{el.badge}</div>
                         <h5 className="calendar__label--name">

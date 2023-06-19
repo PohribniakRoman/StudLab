@@ -13,7 +13,7 @@ export const DropMenu:React.FC<DropMenuInterface> = (props:DropMenuInterface) =>
     const profile = useSelector((state:any)=>state.client);
     return <section className={`dropmenu ${props.isActive?"dropactive":""}`}>
         <div className="dropmenu__wrapper">
-            <div className="dropmenu__name">Ви увійшли як:<b>{profile.firstName+profile.lastName}</b></div>
+            <div className="dropmenu__name">Ви увійшли як:<b>{profile.firstName+" "+profile.lastName}</b></div>
             <Link to="/profile"><div className="dropmenu__item">Профіль</div></Link>
             <Link to="/auth"><div className="dropmenu__item" onClick={()=>{
              cookies.remove("token");

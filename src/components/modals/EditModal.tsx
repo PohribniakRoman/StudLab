@@ -6,8 +6,8 @@ import AuthFormInput from "../ui-components/AuthFormInput";
 import { Subtitle } from "../ui-components/Subtitle";
 import {RxCross1} from "react-icons/rx";
 import { ENDPOINTS } from "../../services/ENDPOINTS";
-import Cookies from 'universal-cookie';
 import { useNotification } from "../../services/hooks/useNotification";
+import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 export const EditModal:React.FC = ()=>{
@@ -19,8 +19,10 @@ export const EditModal:React.FC = ()=>{
     const dataCollector = useRef({});
     useEffect(()=>{setUpdated(isEditing)},[isEditing]);
     const notify = useNotification();
+    document.body.style.overflow = "hidden"
 
     if(!isModalUpdated){
+        document.body.style.overflow = "visible"
         return <></>
     }
 

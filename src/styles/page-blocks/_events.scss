@@ -1,6 +1,6 @@
-$font-size: 26px;
+$font-size: 16px;
 $line-height: 1.4;
-$lines-to-show: 5;
+$lines-to-show: 3;
 
 .event {
   @include flex;
@@ -17,7 +17,7 @@ $lines-to-show: 5;
     object-fit: contain;
     object-position: center;
     border-radius: 15px;
-    &--wrapper{
+    &--wrapper {
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -41,15 +41,17 @@ $lines-to-show: 5;
   }
   &__content {
     margin-left: 50px;
+    @include flex-column-center;
+    align-items: flex-start;
   }
   &__title {
     font-weight: bold;
     font-family: "Montserrat Alternates", sans-serif;
-    font-size: 36px;
-    margin-top: 40px;
+    font-size: 24px;
   }
   &__description {
     display: -webkit-box;
+    margin: 20px 0;
     height: $font-size * $line-height * $lines-to-show;
     font-size: $font-size;
     line-height: $line-height;
@@ -57,11 +59,10 @@ $lines-to-show: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: 20px;
+    font-size: 16px;
     width: 80%;
-    margin: 25px 0;
     height: auto;
-    line-height: 22px;
+    line-height: 18px;
   }
   &__additional {
     font-family: "Montserrat Alternates", sans-serif;
@@ -78,6 +79,7 @@ $lines-to-show: 5;
     }
   }
   &__controls {
+    width: 100%;
     margin-top: 50px;
     display: flex;
     align-items: center;
@@ -90,8 +92,8 @@ $lines-to-show: 5;
     font-style: italic;
   }
   &__discuss {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background: #ffffff;
     box-shadow: 0px 4px 17px rgba(206, 33, 64, 0.25);
     border-radius: 24px;
@@ -113,8 +115,8 @@ $lines-to-show: 5;
     color: #fff;
     cursor: pointer;
     &--svg {
-      width: 30px;
-      height: 30px;
+      width: 20px;
+      height: 20px;
       background-image: url(../assets/JoinIcon.svg);
       background-size: contain;
       background-position: center;
@@ -129,30 +131,49 @@ $lines-to-show: 5;
     width: 1500px;
     background: rgba(255, 255, 255, 0.5);
     border-radius: 101px;
+    &--title {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: 700;
+      font-family: "Montserrat Alternates", sans-serif;
+      color: #e43050;
+      text-shadow: 0px 4px 6px rgba(206, 33, 64, 0.31);
+    }
   }
 }
 .modal {
   position: fixed;
+  overflow-y: scroll;
+  max-height: 100vh;
   z-index: 1;
   width: 100%;
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.2);
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(205, 255, 231, 0.8);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #e43050;
+  }
   &__edit {
-    @include flex-column-center;    
+    @include flex-column-center;
     width: 50%;
     margin: 30px auto;
     padding: 30px;
     border-radius: 30px;
     background-color: #fff;
     position: relative;
-    &-close{
-        cursor: pointer;
-        position: absolute;
-        right: 20px;
-        top: 20px;
+    &-close {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
     }
-}
-&__event {
+  }
+  &__event {
     padding: 30px;
     width: 80%;
     margin: 20px auto;
@@ -160,11 +181,11 @@ $lines-to-show: 5;
     border-radius: 40px;
     display: flex;
     position: relative;
-    &-close{
-        cursor: pointer;
-        position: absolute;
-        right: 20px;
-        top: 20px;
+    &-close {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
     }
     &-cover {
       width: 420px;
@@ -195,15 +216,55 @@ $lines-to-show: 5;
       line-height: 24px;
     }
   }
-  &__comments {
-    overflow-y: scroll;
-    max-height: 35vh;
-    width: 65%;
-    padding: 30px;
-    border-radius: 20px;
-    margin: 20px auto;
+  &__form {
+    display: flex;
     background-color: #fff;
+    padding-bottom: 20px;
+    &--title{
+      margin: 5px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #e43050;
+      text-shadow: 0px 4px 6px rgba(206, 33, 64, 0.31);
+    }
+  }
+  &__textarea {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 90%;
+    font-family: "Montserrat Alternates", sans-serif;
+    line-height: 16px;
+    font-size: 14px;
+    resize: none;
+    border: 1px solid lightgray;
+    outline: none;
+  }
+  &__comments {
+    width: 70%;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 10px 30px 10px 20px;
+    margin-bottom: 20px;
+    &--wrapper {
+      padding: 0 10px;
+      overflow-y: scroll;
+      max-height: 35vh;
+      width: 100%;
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: rgba(205, 255, 231, 0.8);
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #e43050;
+      }
+    }
     &-avatar {
+      cursor: pointer;
+      border-radius: 50%;
       width: 70px;
       height: 70px;
       margin-right: 20px;
@@ -231,6 +292,7 @@ $lines-to-show: 5;
       margin: 25px 0;
     }
     &-title {
+      cursor: pointer;
       margin-bottom: 7px;
       font-size: 24px;
       font-weight: bold;
@@ -243,6 +305,7 @@ $lines-to-show: 5;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 1;
+  
   @include flex-center;
   &__content {
     padding: 30px;

@@ -6,6 +6,7 @@ import Button from "./ui-components/Button";
 import { useSelector } from "react-redux";
 import { decode } from "js-base64";
 import { ENDPOINTS } from "../services/ENDPOINTS";
+import { BiBell, BiMessageAltDetail } from "react-icons/bi";
 
 export const UserBar: React.FC = () => {
   const [students,loadStudents] = useState<any[]>([]);
@@ -64,10 +65,10 @@ const Menu = () => {
   return (
     <div className="userbar__container">
       <div className="userbar__icon">
-        <div className="userbar__icon--bell notified"></div>
+        <BiBell/>
       </div>
       <div className="userbar__icon">
-        <div className="userbar__icon--comment"></div>
+        <BiMessageAltDetail/>
       </div>
       <div
         className="userbar__avatar"
@@ -89,7 +90,7 @@ const Menu = () => {
           )}
         </div>
         <div className="userbar__avatar--icon">
-          <div className="userbar__avatar--icon-more"></div>
+          <div className={`userbar__avatar--icon-more ${isMenuOpened?"rotated":""}`}></div>
         </div>
       </div>
       <DropMenu isActive={isMenuOpened} />

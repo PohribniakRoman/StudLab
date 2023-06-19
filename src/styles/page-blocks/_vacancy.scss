@@ -18,18 +18,18 @@
     text-shadow: 0px 4px 6px rgba(206, 33, 64, 0.31);
   }
   &__description {
-    margin-left: 50px;
+    margin-left: 10px;
     width: 75%;
     font-family: "Montserrat Alternates", sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
   }
   &__controls {
     margin-bottom: -30px;
-    width: 95%;
-    margin-left: 50px;
+    width: 100%;
+    margin-left: 10px;
     @include flex-center;
     justify-content: space-between;
   }

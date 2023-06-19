@@ -13,6 +13,7 @@ import { ENDPOINTS } from "./ENDPOINTS";
 import { EventModal } from "../components/modals/EventModal";
 import { PublicPorofile } from "../pages/PublickProfile";
 import { EditModal } from "../components/modals/EditModal";
+import { PageInDev } from "../pages/PageInDev";
 const cookies = new Cookies();
 
 export const Router:React.FC = () => {
@@ -55,6 +56,8 @@ return  <BrowserRouter>
             <Route path="/rules" element={<Rules/>}/>
             <Route path="/events" element={<EventPage/>}/>
             <Route path="/profile" element={<ProtectedRouter children={<Profile/>}/>}/>
+            <Route path="/courses" element={<PageInDev/>}/>
+            <Route path="/recommendations" element={<PageInDev/>}/>
             <Route path="/" element={<Home/>}/>
             <Route path="/profile/:username" element={<PublicPorofile/>}/>
             <Route path="*" element={<Page404/>}/>

@@ -28,10 +28,10 @@ export const NavBar:React.FC = () => {
                     <p className="navbar__menu--item-label">Заходи</p>
                 </nav>
             </Link>
-            <Link to="/work">
-                <nav className={`navbar__menu--item ${isOnRoute("/work")}`}>
+            <Link to="/courses">
+                <nav className={`navbar__menu--item ${isOnRoute("/courses")}`}>
                     <img src={CaseIconSVG} />
-                    <p className="navbar__menu--item-label">Робота</p>
+                    <p className="navbar__menu--item-label">Курси</p>
                 </nav>
             </Link>
             <Link to="/recommendations">

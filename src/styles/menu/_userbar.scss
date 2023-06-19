@@ -61,25 +61,9 @@
   &__icon {
     cursor: pointer;
     @include flex-center;
-    width: 82px;
-    height: 52px;
+    font-size: 24px;
     border-radius: 18px;
-    & div {
-      width: 24px;
-      height: 24px;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-    }
-    &--comment {
-      background-image: url(../assets/CommentsIcon.svg);
-    }
-    &--bell {
-      background-image: url(../assets/BellIcon.svg);
-    }
-    &--exit {
-      background-image: url(../assets/ExitIcon.svg);
-    }
+    padding: 10px 25px;
   }
   &__avatar {
     background-color: #fff;
@@ -103,7 +87,12 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
+        transition: .3s;
         background-image: url(../assets/AvatarMoreIcon.svg);
+        transform: rotate(90deg);
+        &.rotated{
+          transform: rotate(0deg);
+        }
       }
     }
   }
