@@ -1,12 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { DropMenu } from "./menu/DropMenu";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProtectedRouter } from "../services/protectrdRouter";
 import Button from "./ui-components/Button";
 import { useSelector } from "react-redux";
 import { decode } from "js-base64";
 import { ENDPOINTS } from "../services/ENDPOINTS";
 import { BiBell, BiMessageAltDetail } from "react-icons/bi";
+import { FaChevronLeft } from "react-icons/fa";
 
 export const UserBar: React.FC = () => {
   const [students,loadStudents] = useState<any[]>([]);
@@ -90,7 +91,9 @@ const Menu = () => {
           )}
         </div>
         <div className="userbar__avatar--icon">
-          <div className={`userbar__avatar--icon-more ${isMenuOpened?"rotated":""}`}></div>
+          <div className={`userbar__avatar--icon-more ${isMenuOpened?"rotated":""}`}>
+           <FaChevronLeft/>
+          </div>
         </div>
       </div>
       <DropMenu isActive={isMenuOpened} />
