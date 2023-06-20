@@ -10,6 +10,9 @@ import { useSelector } from "react-redux";
 
 export const Home: React.FC = () => {
   const events = useSelector((state:any)=>state.userActivities)
+  
+  console.log(events.allActivities);
+  
   return (
     <section className="page">
       <NavBar />
@@ -17,7 +20,9 @@ export const Home: React.FC = () => {
       <UserBar />
       <Slider/>
       <EventContainer>
-        {events.allActivities.map((event:any)=>{
+        {!events.allActivities.length? <div className="wrapper">
+      <div className="spinner"/>
+  </div>:events.allActivities.map((event:any)=>{
           const isInMyEvents = events.myActivities.filter((myEvent:any)=>myEvent.id === event.id);
           return <Event key={event.id} disabled={isInMyEvents.length>0} data={event}/>
         })}

@@ -9,13 +9,9 @@ export const EventPage: React.FC = () => {
   const events = useSelector((state:any)=>state.userActivities)
 
     if(!events.allActivities.length){
-      return <div v-if="loading" className="spinner">
-      <div className="rect1"></div>
-      <div className="rect2"></div>
-      <div className="rect3"></div>
-      <div className="rect4"></div>
-      <div className="rect5"></div>
-    </div>
+      return <div className="wrapper">
+      <div className="spinner"/>
+  </div>
     }
     return (
       <section className="page">

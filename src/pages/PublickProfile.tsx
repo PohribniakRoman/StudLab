@@ -19,7 +19,9 @@ export const PublicPorofile:React.FC = ()=>{
     })()},[username])
 
     if(!profile.id){
-        return <>loading...</>
+        return  <div className="wrapper">
+            <div className="spinner"/>
+        </div>    
     }
     console.log(profile.photoBytes);
     return <section className="page">

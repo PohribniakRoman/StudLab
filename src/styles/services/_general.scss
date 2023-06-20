@@ -119,68 +119,52 @@ span {
 a {
   outline: none;
 }
-.spinner {
-    margin: 0 auto;
-    width: 50px;
-    height: 60px;
-    text-align: center;
-    font-size: 10px;
+.wrapper {
+  @include flex-center;
+  margin: 20px auto;
+}
+.cell .wrapper::after {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 0.2rem;
+  text-align: center;
+  background:  #e43050;
+  counter-increment: spinnerCount;
+  content: counter(spinnerCount);
+}
+
+.spinner{
+  width: 4rem;
+  height: 4rem;
+  border-top: 3px solid #e43050;
+  border-right: 3px solid transparent;
+  border-radius: 50%;
+  -webkit-animation: rotation .8s linear infinite;
+          animation: rotation .8s linear infinite;
+}
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
-  
-  .spinner > div {
-    background-color: #e43050;
-    height: 100%;
-    width: 6px;
-    margin-right: 2px;
-    display: inline-block;
-    -webkit-animation: stretchDelay 1.2s infinite ease-in-out;
-    animation: stretchDelay 1.2s infinite ease-in-out;
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
-  
-  .spinner .rect2 {
-    -webkit-animation-delay: -1.1s;
-    animation-delay: -1.1s;
+}
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
   }
-  
-  .spinner .rect3 {
-    -webkit-animation-delay: -1s;
-    animation-delay: -1s;
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
   }
-  
-  .spinner .rect4 {
-    -webkit-animation-delay: -0.9s;
-    animation-delay: -0.9s;
-  }
-  
-  .spinner .rect5 {
-    -webkit-animation-delay: -0.8s;
-    animation-delay: -0.8s;
-  }
-  
-  @-webkit-keyframes stretchDelay {
-    0%,
-    40%,
-    100% {
-      -webkit-transform: scaleY(0.4);
-    }
-    20% {
-      -webkit-transform: scaleY(1);
-    }
-  }
-  
-  @keyframes stretchDelay {
-    0%,
-    40%,
-    100% {
-      transform: scaleY(0.4);
-      -webkit-transform: scaleY(0.4);
-    }
-    20% {
-      transform: scaleY(1);
-      -webkit-transform: scaleY(1);
-    }
-  }
-  
+}
+
   body{
     &::-webkit-scrollbar{
         width: 5px;

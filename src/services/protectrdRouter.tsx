@@ -43,13 +43,9 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
     },[])
     
     if(isAuthorized === null){
-        return <div v-if="loading" className="spinner">
-        <div className="rect1"></div>
-        <div className="rect2"></div>
-        <div className="rect3"></div>
-        <div className="rect4"></div>
-        <div className="rect5"></div>
-      </div>
+        return <div className="wrapper">
+        <div className="spinner"/>
+      </div>    
     }
 
     return (<>

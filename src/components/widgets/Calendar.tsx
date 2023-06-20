@@ -46,13 +46,9 @@ export const Calendar:React.FC = () => {
     } 
 
     if(calendarData[0].isMarker === true){
-        return <div v-if="loading" className="spinner">
-        <div className="rect1"></div>
-        <div className="rect2"></div>
-        <div className="rect3"></div>
-        <div className="rect4"></div>
-        <div className="rect5"></div>
-      </div>
+        return <div className="wrapper">
+        <div className="spinner"/>
+    </div>
     }
 
     const slideRightCalendar = (ind:number) => {
