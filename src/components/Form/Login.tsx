@@ -42,7 +42,7 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
             </div>
             <div className="auth__form--input-container-login">
                 <Subtitle className="auth__form--input-title" title="Пароль"/>
-                <AuthFormInput xs="auth__form--input-login" name="password" collector={formData} placeholder="Ввести пароль"/>
+                <AuthFormInput type="password" xs="auth__form--input-login" name="password" collector={formData} placeholder="Ввести пароль"/>
             </div>
             <div className="auth__form--submit-container">
                 <Button type="submit" variant="field" title="Увійти"/>

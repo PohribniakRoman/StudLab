@@ -19,11 +19,14 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
             firstRender.current = false;
             (async ()=>{
                 try{
+                const token = cookies.get("token");
+                console.log(token.length,token);
+                
                 const resp = await (await fetch(ENDPOINTS.person,{
                 mode: "cors" as RequestMode,
                 headers:{
                     "Content-Type":"application/json",
-                    "Authorization":`Bearer ${cookies.get("token")}`}})).json();
+                    "Authorization":`Bearer ${token}`}})).json();
                 if(resp){
                     if(resp[0].id){
                         dispatch({type:"LOAD_CLIENT",payload:resp[0]})
