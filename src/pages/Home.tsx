@@ -11,8 +11,6 @@ import { useSelector } from "react-redux";
 export const Home: React.FC = () => {
   const events = useSelector((state:any)=>state.userActivities)
   
-  console.log(events.allActivities);
-  
   return (
     <section className="page">
       <NavBar />
