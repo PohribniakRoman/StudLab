@@ -16,7 +16,7 @@ export const Auth: React.FC = (): React.ReactElement => {
     active:"mail",
     animateOut:"",
   })
-  const [email,setMail] = useState("");
+  const [email,setMail] = useState<string>("");
   return (
     <section className="auth">
       <div className="auth__container">

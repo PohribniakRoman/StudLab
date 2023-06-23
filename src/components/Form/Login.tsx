@@ -4,13 +4,20 @@ import { useNotification } from "../../services/hooks/useNotification";
 import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
 import { Subtitle } from "../ui-components/Subtitle"
-import React,{useRef} from "react";
+import React,{useRef, useState} from "react";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 type LoginlInterface = {
     email:string,
     password:string
+}
+
+
+const Loader = ()=>{
+    return <div className="wrapper">
+    <div className="spinner"/>
+</div>
 }
 
 export const Login:React.FC<any> = ({animation,updateAnimation})=>{
@@ -21,10 +28,13 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
     const formData = useRef<LoginlInterface>({email:"",password:""});
     const notification = useNotification();
     const navigate = useNavigate()
+    const [isLoading,setLoading] = useState<boolean>(false);
+
 
     return <form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={async (e)=>{
         e.preventDefault();
         if(formData.current.email.trim() && formData.current.password.trim()){
+            setLoading(true);
             const resp = await(await fetch(ENDPOINTS.login,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json();
             if(resp.token){
                 notification.createNotification("Wellcome back","success")
@@ -33,6 +43,7 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
             }else{
                 notification.createNotification(resp.message,"error")
             }
+            setLoading(false);
         }
     }}>
             <div className="auth__form--wrapper-email">
@@ -45,7 +56,7 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
                 <AuthFormInput type="password" xs="auth__form--input-login" name="password" collector={formData} placeholder="Ввести пароль"/>
             </div>
             <div className="auth__form--submit-container">
-                <Button type="submit" variant="field" title="Увійти"/>
+                {isLoading?<Loader/>:<Button type="submit" variant="field" title="Увійти"/>}
             </div>
         </div>
     </form>
