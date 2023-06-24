@@ -6,6 +6,7 @@ import Button from "../ui-components/Button"
 import { Subtitle } from "../ui-components/Subtitle"
 import React,{useRef, useState} from "react";
 import Cookies from 'universal-cookie';
+import { Loader } from "../../services/Loader";
 const cookies = new Cookies();
 
 type LoginlInterface = {
@@ -14,11 +15,6 @@ type LoginlInterface = {
 }
 
 
-const Loader = ()=>{
-    return <div className="wrapper">
-    <div className="spinner"/>
-</div>
-}
 
 export const Login:React.FC<any> = ({animation,updateAnimation})=>{
     const nodeName = "login";    

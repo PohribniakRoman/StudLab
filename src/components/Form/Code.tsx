@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef,useState } from "react";
 import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
 import { ENDPOINTS } from "../../services/ENDPOINTS";
 import { useNotification } from "../../services/hooks/useNotification";
+import { Loader } from "../../services/Loader";
 
 type CodelInterface = {
     code:string,
@@ -16,12 +17,15 @@ export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
     const slideOut = animation.animateOut===nodeName;
     const formData = useRef<CodelInterface>({code:"",email});
     const notifications =useNotification();
+    const [isLoading,setLoading] = useState<boolean>(false);
+
     
     return<form className={`auth__form--container ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={(e)=>{
         e.preventDefault();
         if(formData.current.code.trim()){
             formData.current.email = email;
             (async ()=>{
+                setLoading(true);
                 const resp = await(await fetch(ENDPOINTS.verify,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json();
                 if(resp){
                     console.log(resp);
@@ -30,6 +34,7 @@ export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
                 }else{
                     notifications.createNotification("Invalid data","error");
                 }
+                setLoading(false);
             })()
         }
     }}>
@@ -39,7 +44,8 @@ export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
                 <AuthFormInput xs="auth__form--input-email" name="code" collector={formData} placeholder="Ввести код"/>
             </div>
             <div className="auth__form--submit-container">
-                <Button type="submit" variant="field" title="Далі"/>
+            {isLoading?<Loader/>:
+                <Button type="submit" variant="field" title="Далі"/>}
             </div>
         </div>
     </form>

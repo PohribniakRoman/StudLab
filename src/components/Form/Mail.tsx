@@ -43,9 +43,8 @@ export const Mail:React.FC<any> = ({animation,updateAnimation,emailStore})=>{
                 <AuthFormInput xs="auth__form--input-email" type="email" name="email" collector={formData} placeholder="Ввести пошту"/>
             </div>
             <div className="auth__form--submit-container">
-                <Button type="submit" variant="field" title="Перевірити" onClick={()=>{
-                }}/>
-                </div>
+                <Button type="submit" variant="field" title="Перевірити"/>
+            </div>
         </div>
     </form>
 }
