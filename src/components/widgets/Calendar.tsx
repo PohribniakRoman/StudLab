@@ -21,6 +21,7 @@ const marker = {
 export const Calendar:React.FC = () => {
     const activities = useSelector((state:any)=>state.userActivities.myActivities)
     const dispatch = useDispatch();
+
     const [calendarData,setCalendar] = useState<CalendarInterface[]>([marker]);
     useEffect(()=>{
         const defultState:CalendarInterface[] = [];
@@ -39,7 +40,7 @@ export const Calendar:React.FC = () => {
             })
         } 
         setCalendar([...defultState]);
-    },[activities])
+    },[])
         
     const changeDate = (newDate:string) =>{
         dispatch({type:"LOAD_DATE",payload:newDate})

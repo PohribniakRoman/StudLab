@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux"
 import { Footer } from "../components/Footer"
 import { NavBar } from "../components/menu/NavBar"
 import { UserBar } from "../components/UserBar"
@@ -8,6 +9,7 @@ import { ProfileShortcut } from "../components/widgets/ProfileShortcut"
 import { SavedProposal } from "../components/widgets/SavedProposal"
 
 export const Profile:React.FC = () => {
+    const profile = useSelector((state: any) => state.client);
     return <section className="page">
       <NavBar />
       <div className="page__container">
@@ -15,7 +17,7 @@ export const Profile:React.FC = () => {
       <div className="page__wrapper-box">
         <div className="page__wrapper-item">
           <ProfileShortcut/>
-          <Documents/>
+          <Documents files={[profile.certificates,profile.resumes]}/>
           <SavedProposal/>
         </div>
         <div className="page__wrapper-item">

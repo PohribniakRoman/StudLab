@@ -1,11 +1,19 @@
 .documents{
     @include flex-center;
     &__container{
+        position: relative;
         background: rgba(255, 255, 255, 0.51);
         width: 330px;
         margin: 10px;
         border-radius: 20px;
         min-height: 300px;
+    }
+    &__placeholder{
+        position: absolute;
+        top: 50%;
+        font-size: 24px;
+        color: lightgray;
+        font-style: italic;
     }
     &__title{
         font-weight: bold;

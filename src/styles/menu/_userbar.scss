@@ -75,10 +75,24 @@
     border-radius: 18px;
     padding: 10px;
     &--img {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url(https://cdn-icons-png.flaticon.com/256/3135/3135715.png);
       width: 40px;
       height: 40px;
       background: #000;
+      position: relative;
+      @include flex-center;      
       border-radius: 50%;
+      &::after{
+      border-radius: 50%;
+       position: absolute;
+       content: "";
+       width: 42px;
+       height: 42px;
+       border: 2px solid #e43050;
+      }
     }
     &--icon {
       &-more {
