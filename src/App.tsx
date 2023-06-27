@@ -11,7 +11,6 @@ export const App:React.FC = ():React.ReactElement => {
 
     return (
     <Provider store={combinedStore}>
-        <NotificationContainer/>
         <Router/>
     </Provider>);
 }

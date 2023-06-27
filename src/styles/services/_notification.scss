@@ -1,33 +1,32 @@
-.notification{
-    position: fixed;
-    z-index: 1;
-    @include flex-column-center;
-    justify-content: flex-end;
-    bottom: 50px;
-    left: 50px;
-    font-size: 16px;
-    &__item{
-        width: 350px;
-        margin: 5px 0;
-        line-height: 20px;
-        padding: 20px;
-        border-radius: 10px;
-        & b{
-            text-transform: uppercase;
-            font-weight: bold;
-        }
+.notification {
+  z-index: 1;
+  cursor: context-menu;
+  user-select: none;
+  position: fixed;
+  @include flex-column-center;
+  justify-content: flex-end;
+  bottom: 50px;
+  left: 50px;
+  font-size: 16px;
+  &__item {
+    min-width: 20vw;
+    margin: 5px 0;
+    line-height: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    & b {
+      font-weight: 600;
     }
-    & .warning{
-        background-color: rgb(255, 221, 0);
-    }
-    & .error{
-        background-color: rgba(255, 0, 0, 0.589);
-        color: #fff;
-    }
-    & .success{
-        background-color: lightgreen;
-    }
-    & .info{
-        background-color: lightblue;
-    }
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+    color: #000;
+    background: linear-gradient(
+      106.54deg,
+      rgb(205, 255, 231) 3.61%,
+      rgb(208, 235, 255) 40.26%,
+      rgb(181, 220, 255) 69.88%,
+      rgb(185, 192, 255) 100%
+    );
+}
 }

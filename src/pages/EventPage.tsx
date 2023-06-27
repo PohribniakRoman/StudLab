@@ -2,8 +2,10 @@ import { Event } from "../components/Event";
 import { EventContainer } from "../components/EventContainer";
 import { Footer } from "../components/Footer";
 import { NavBar } from "../components/menu/NavBar";
+import { EventModal } from "../components/modals/EventModal";
 import { UserBar } from "../components/UserBar";
 import { useSelector } from "react-redux";
+import { NotificationContainer } from "../services/Notification";
 
 export const EventPage: React.FC = () => {
   const events = useSelector((state:any)=>state.userActivities)
@@ -14,6 +16,9 @@ export const EventPage: React.FC = () => {
   </div>
     }
     return (
+      <>
+      <EventModal/>
+      <NotificationContainer/>
       <section className="page">
         <NavBar />
         <div className="page__container">
@@ -27,5 +32,6 @@ export const EventPage: React.FC = () => {
         </div>
         <Footer />
     </section>
+      </>
   );
 };

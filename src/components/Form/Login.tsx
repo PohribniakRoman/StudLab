@@ -33,11 +33,11 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
             setLoading(true);
             const resp = await(await fetch(ENDPOINTS.login,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json();
             if(resp.token){
-                notification.createNotification("Wellcome back","success")
+                notification.createNotification("Wellcome back")
                 cookies.set("token",resp.token,{expires:new Date(new Date().getTime()+(1000*60*60*24*7))})
                 navigate("/");
             }else{
-                notification.createNotification(resp.message,"error")
+                notification.createNotification(resp.message)
             }
             setLoading(false);
         }

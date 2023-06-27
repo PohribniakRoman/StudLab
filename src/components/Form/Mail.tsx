@@ -24,14 +24,14 @@ export const Mail:React.FC<any> = ({animation,updateAnimation,emailStore})=>{
                 emailStore(formData.current.email);
                 if(isVerified.message === "Student is verified"){
                     updateAnimation({animateOut:animation.active,active:"register"})
-                    notification.createNotification(isVerified.message,"success");
+                    notification.createNotification(isVerified.message);
                 }else{
                     const resp = await (await fetch(ENDPOINTS.join,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json()
                     if(resp.message && !resp.hasOwnProperty("error")){
                         updateAnimation({animateOut:animation.active,active:"code"})
-                        notification.createNotification(resp.message,"info");
+                        notification.createNotification(resp.message);
                     }else{
-                        notification.createNotification(resp.error,"error");
+                        notification.createNotification(resp.error);
                     }
                 }
             })()

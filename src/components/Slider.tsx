@@ -26,13 +26,15 @@ export const Slider:React.FC = () => {
     }
    },[sliderRef.current])
     
-    return <div className="swiper slider" ref={sliderRef} style={{width:"600px",height:"300px"}}>
-          <div className="swiper-wrapper">
-            {sldierData.map((link:string)=>{
-               return <div key={link} className="swiper-slide" style={{backgroundImage:`url(${link})`}}></div>
-            })}
-         </div>
-        <div className="swiper-button-prev"></div>
-        <div className="swiper-button-next"></div>
-    </div>
+    return  <section className="slider">
+        <div className="swiper" ref={sliderRef} style={{width:"600px",height:"300px"}}>
+            <div className="swiper-wrapper">
+              {sldierData.map((link:string)=>{
+                return <div key={link} className="swiper-slide" style={{backgroundImage:`url(${link})`}}></div>
+              })}
+          </div>
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-button-next"></div>
+      </div>
+    </section>
 }

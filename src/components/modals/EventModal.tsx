@@ -7,19 +7,20 @@ import { ReportModal } from "./ReportModal"
 import {RxCross1} from "react-icons/rx";
 import { ENDPOINTS } from "../../services/ENDPOINTS"
 import Cookies from 'universal-cookie';
+import { useActivities } from "../../services/hooks/useActivities"
 const cookies = new Cookies();
 
 
 export const EventModal = () => {
+    useActivities().loadActivities();
+    const dispatch = useDispatch();
+    const modalRef = useRef<any>();
     const events = useSelector((state:any)=>state.userActivities)
     const student = useSelector((state:any)=>state.client)
     const data = events.current;
-    const [isReportOpened,setReportOpen] = useState(false);
-    const dispatch = useDispatch();
-    const [loadedData,updateData] = useState(data);
-    const modalRef = useRef<any>();
     const [comments,loadComments] = useState<any>(null);
-
+    const [loadedData,updateData] = useState(data);
+    const [isReportOpened,setReportOpen] = useState(false);
 
     useEffect(()=>{
         (async ()=>{
@@ -30,15 +31,15 @@ export const EventModal = () => {
         })()
         updateData({...data})
     },[data])
-    document.body.style.overflow = "hidden"
-    const isInMyEvents = events.myActivities.filter((myEvent:any)=>myEvent.id === loadedData.id).length > 0;
+
     
     if(!loadedData.hasOwnProperty("id")){
         document.body.style.overflow = "visible"
         return <></>;
     }
 
-
+    document.body.style.overflow = "hidden"
+    const isInMyEvents = events.myActivities.filter((myEvent:any)=>myEvent.id === loadedData.id).length > 0;
 
     return <section className="modal opened" ref={modalRef} onClick={(e)=>{e.target === modalRef.current && dispatch({type:"LOAD_CURRENT",payload:{}})}}>
         <ReportModal data={loadedData} isOpened={isReportOpened} setOpen={setReportOpen}/>
@@ -60,7 +61,6 @@ export const EventModal = () => {
             <h1 className="modal__form--title">Залишити коментар</h1>
             <form className="modal__form" onSubmit={(event:any)=>{
                 event.preventDefault()
-                console.log(event.target.text.value);
                 fetch(ENDPOINTS.addComment+`?eventId=${data.id}`,{method:"POST",...ENDPOINTS.params,headers:{...ENDPOINTS.params.headers,"Authorization":`Bearer ${cookies.get("token")}`},body:JSON.stringify({commentText:event.target.text.value})})
                 loadComments((prev:any)=>{
                     return [...prev,{student,commentText:event.target.text.value}]

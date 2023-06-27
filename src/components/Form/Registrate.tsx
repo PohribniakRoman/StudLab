@@ -19,7 +19,7 @@ export const Registrate:React.FC<any> = ({animation,updateAnimation,email})=>{
         e.preventDefault();
         const resp = await(await fetch(ENDPOINTS.authorize,{method:"POST",body:JSON.stringify({...formData.current,email}), ...ENDPOINTS.params})).json();
         if(resp.token){
-            useNotification().createNotification(resp.message,"success");
+            useNotification().createNotification(resp.message);
             cookies.set("token",resp.token,{expires:new Date(new Date().getTime()+(1000*60*60*24*7))})
         }        
     }}>

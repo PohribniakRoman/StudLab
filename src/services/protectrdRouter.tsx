@@ -12,8 +12,9 @@ export type ProtectedRouterChildren = {
 export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:ProtectedRouterChildren) => {
     const [isAuthorized,setAuthorized] = useState<null|boolean>(null);
     const dispatch = useDispatch();
-    const firstRender = useRef(true)
-
+    const firstRender = useRef(true);
+    
+    
     useEffect(()=>{
         if(firstRender.current){
             firstRender.current = false;

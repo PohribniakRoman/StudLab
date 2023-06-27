@@ -28,11 +28,10 @@ export const Code:React.FC<any> = ({animation,updateAnimation,email})=>{
                 setLoading(true);
                 const resp = await(await fetch(ENDPOINTS.verify,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json();
                 if(resp){
-                    console.log(resp);
                     updateAnimation({animateOut:animation.active,active:"register"})
-                    notifications.createNotification("Email підтверджено","success");
+                    notifications.createNotification("Email підтверджено");
                 }else{
-                    notifications.createNotification("Invalid data","error");
+                    notifications.createNotification("Invalid data");
                 }
                 setLoading(false);
             })()

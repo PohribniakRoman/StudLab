@@ -6,21 +6,21 @@ export type NotificationAction = Action & {
 
 export type Notification = {
     message:string,
-    type:"warning"|"error"|"info"|"success",
     id:string,
 }
 
 export const notifications = (state:Notification[] = [],action:NotificationAction) => {
     switch (action.type) {
-        case "ADD_NOTIFICATION":
-        
-        return [...state,action.payload];
-        
-        case "REMOVE_NOTIFICATION":            
+        case "ADD_NOTIFICATION":{
+            const newState = state.filter(message=>message.message !== action.payload.message);
+            return [...newState,action.payload];
+        }
+        case "REMOVE_NOTIFICATION":{
             const newState = state.filter(message=>message.id !== action.payload.id);
-        return newState;
+            return newState;
+        }
         default:{
-            return state;
+            return [];
         }
     }
 }

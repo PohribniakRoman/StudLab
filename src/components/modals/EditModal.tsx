@@ -30,7 +30,7 @@ export const EditModal:React.FC = ()=>{
         <form className="modal__edit" onSubmit={(event)=>{
             event.preventDefault();
             fetch(ENDPOINTS.editProfile,{method:"PUT",...ENDPOINTS.params,headers:{...ENDPOINTS.params.headers,"Authorization":`Bearer ${cookies.get("token")}`},body:JSON.stringify({...dataCollector.current})})
-            notify.createNotification("Зміни буде відображено через декілька хвилин...","success")
+            notify.createNotification("Зміни буде відображено через декілька хвилин...")
             dispatch({type:"SET_EDIT",payload:false});
         }}>
             <PhotoInput withLabel={false} formData={dataCollector}/>
