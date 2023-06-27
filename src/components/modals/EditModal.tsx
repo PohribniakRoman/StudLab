@@ -8,6 +8,7 @@ import {RxCross1} from "react-icons/rx";
 import { ENDPOINTS } from "../../services/ENDPOINTS";
 import { useNotification } from "../../services/hooks/useNotification";
 import Cookies from 'universal-cookie';
+import { decode } from "js-base64";
 const cookies = new Cookies();
 
 export const EditModal:React.FC = ()=>{
@@ -33,7 +34,7 @@ export const EditModal:React.FC = ()=>{
             notify.createNotification("Зміни буде відображено через декілька хвилин...")
             dispatch({type:"SET_EDIT",payload:false});
         }}>
-            <PhotoInput withLabel={false} formData={dataCollector}/>
+            <PhotoInput source={decode(profile.photoBytes)} withLabel={false} formData={dataCollector}/>
             <Subtitle className="auth__form--input-title" title="Ім'я"/>
             <AuthFormInput initialdata={profile.firstName} style={{width:"50%"}} placeholder="Слава Україні" name="firstName" collector={dataCollector}/>
             <Subtitle className="auth__form--input-title" title="Прізвище"/>

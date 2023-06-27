@@ -17,7 +17,7 @@ export const DropMenu:React.FC<DropMenuInterface> = (props:DropMenuInterface) =>
             <Link to="/profile"><div className="dropmenu__item">Профіль</div></Link>
             <Link to="/auth"><div className="dropmenu__item" onClick={()=>{
              cookies.remove("token");
-             notification.createNotification("До наступної зустрічі","info")
+             notification.createNotification("До наступної зустрічі")
             }}>Вихід</div></Link>
         </div>
     </section>
