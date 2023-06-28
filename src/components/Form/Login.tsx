@@ -6,7 +6,7 @@ import Button from "../ui-components/Button"
 import { Subtitle } from "../ui-components/Subtitle"
 import React,{useRef, useState} from "react";
 import Cookies from 'universal-cookie';
-import { Loader } from "../../services/Loader";
+import { Loader } from "../Loader";
 const cookies = new Cookies();
 
 type LoginlInterface = {

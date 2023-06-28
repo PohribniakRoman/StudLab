@@ -3,7 +3,7 @@ import AuthFormInput from "../ui-components/AuthFormInput"
 import Button from "../ui-components/Button"
 import { ENDPOINTS } from "../../services/ENDPOINTS";
 import { useNotification } from "../../services/hooks/useNotification";
-import { Loader } from "../../services/Loader";
+import { Loader } from "../Loader";
 
 type CodelInterface = {
     code:string,

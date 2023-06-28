@@ -31,13 +31,13 @@ export const NavBar:React.FC = () => {
             <Link to="/courses">
                 <nav className={`navbar__menu--item ${isOnRoute("/courses")}`}>
                     <img src={CaseIconSVG} />
-                    <p className="navbar__menu--item-label">Курси</p>
+                    <p className="navbar__menu--item-label">Вакансії</p>
                 </nav>
             </Link>
             <Link to="/recommendations">
                 <nav className={`navbar__menu--item ${isOnRoute("/recommendations")}`}>
                     <img src={RecommendationsIconSVG} />
-                    <p className="navbar__menu--item-label">Рекомендації</p>
+                    <p className="navbar__menu--item-label">Курси</p>
                 </nav>
             </Link>
             <Link to="/rules">

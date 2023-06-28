@@ -4,6 +4,7 @@ import { useEffect,useState } from "react";
 export const NotificationContainer:React.FC = () => {
     const notifications = useSelector((state:any)=>state.notifications);
     const [loadedNotification,loadNotification] = useState<any[]>([]);
+    
     useEffect(()=>{
         loadNotification([...notifications]);
     },[notifications])

@@ -6,18 +6,20 @@ import { EventModal } from "../components/modals/EventModal";
 import { UserBar } from "../components/UserBar";
 import { useSelector } from "react-redux";
 import { NotificationContainer } from "../services/Notification";
+import { useActivities } from "../services/hooks/useActivities";
 
 export const EventPage: React.FC = () => {
   const events = useSelector((state:any)=>state.userActivities)
+  useActivities().loadActivities();
 
     if(!events.allActivities.length){
-      return <div className="wrapper">
+      return <div className="wrapper fullsize" >
       <div className="spinner"/>
   </div>
     }
     return (
       <>
-      <EventModal/>
+      <EventModal withLoad={false}/>
       <NotificationContainer/>
       <section className="page">
         <NavBar />

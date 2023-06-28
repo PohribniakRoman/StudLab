@@ -11,8 +11,10 @@ import { useActivities } from "../../services/hooks/useActivities"
 const cookies = new Cookies();
 
 
-export const EventModal = () => {
-    useActivities().loadActivities();
+export const EventModal = ({withLoad = true}) => {
+    if(withLoad){
+        useActivities().loadActivities();
+    }
     const dispatch = useDispatch();
     const modalRef = useRef<any>();
     const events = useSelector((state:any)=>state.userActivities)
