@@ -8,21 +8,26 @@ import {RxCross1} from "react-icons/rx";
 import { ENDPOINTS } from "../../services/ENDPOINTS"
 import Cookies from 'universal-cookie';
 import { useActivities } from "../../services/hooks/useActivities"
+import { Loader } from "../Loader"
 const cookies = new Cookies();
 
 
 export const EventModal = ({withLoad = true}) => {
-    if(withLoad){
-        useActivities().loadActivities();
-    }
     const dispatch = useDispatch();
     const modalRef = useRef<any>();
     const events = useSelector((state:any)=>state.userActivities)
     const student = useSelector((state:any)=>state.client)
+    const activities = useActivities();
     const data = events.current;
     const [comments,loadComments] = useState<any>(null);
     const [loadedData,updateData] = useState(data);
     const [isReportOpened,setReportOpen] = useState(false);
+
+    useEffect(()=>{
+        if(withLoad){
+            activities.loadActivities();
+        }
+    },[])
 
     useEffect(()=>{
         (async ()=>{
@@ -43,7 +48,8 @@ export const EventModal = ({withLoad = true}) => {
     document.body.style.overflow = "hidden"
     const isInMyEvents = events.myActivities.filter((myEvent:any)=>myEvent.id === loadedData.id).length > 0;
 
-    return <section className="modal opened" ref={modalRef} onClick={(e)=>{e.target === modalRef.current && dispatch({type:"LOAD_CURRENT",payload:{}})}}>
+    return <section className="modal" ref={modalRef} onClick={(e)=>{e.target === modalRef.current && dispatch({type:"LOAD_CURRENT",payload:{}});console.log(e.target);
+    }}>
         <ReportModal data={loadedData} isOpened={isReportOpened} setOpen={setReportOpen}/>
         <section className="modal__event">
             <img className="modal__event-cover" src={"data:image;base64," + decode(loadedData.eventPhoto)}/>
@@ -60,31 +66,26 @@ export const EventModal = ({withLoad = true}) => {
             
         </section>
         <section className="modal__comments">
-            <h1 className="modal__form--title">Залишити коментар</h1>
-            <form className="modal__form" onSubmit={(event:any)=>{
-                event.preventDefault()
-                fetch(ENDPOINTS.addComment+`?eventId=${data.id}`,{method:"POST",...ENDPOINTS.params,headers:{...ENDPOINTS.params.headers,"Authorization":`Bearer ${cookies.get("token")}`},body:JSON.stringify({commentText:event.target.text.value})})
-                loadComments((prev:any)=>{
-                    return [...prev,{student,commentText:event.target.text.value}]
-                })
-                setTimeout(()=>{
-                    event.target.text.value = "";
-                },10)}}>
-                <textarea name="text" className="modal__textarea" required/>
-                <Button type="submit" style={{borderRadius:"0px",borderTopRightRadius:"10px",borderBottomRightRadius:"10px",width:"150px"}} variant="field" title="Надіслати"/>
-            </form>
+            <h1 className="modal__form--title">Коментарі</h1>
             <div className="modal__comments--wrapper">
-                {comments === null?<div v-if="loading" className="spinner">
-                                <div className="rect1"></div>
-                                <div className="rect2"></div>
-                                <div className="rect3"></div>
-                                <div className="rect4"></div>
-                                <div className="rect5"></div>
-                            </div>
+                {comments === null?<Loader/>
                     :comments.map((e:any)=>{
                     return  <Comment key={e.id} reportToggle={setReportOpen} data={e}/>
                 })}
             </div>
+            <form className="modal__form" onSubmit={(event:any)=>{
+                event.preventDefault()
+                if(event.target.text.value.trim().length > 1){
+                    fetch(ENDPOINTS.addComment+`?eventId=${data.id}`,{method:"POST",...ENDPOINTS.params,headers:{...ENDPOINTS.params.headers,"Authorization":`Bearer ${cookies.get("token")}`},body:JSON.stringify({commentText:event.target.text.value})})
+                    loadComments((prev:any)=>{
+                        return [...prev,{student,commentText:event.target.text.value}]
+                    })
+                    setTimeout(()=>{
+                        event.target.text.value = "";
+                    },10)}}}>
+                <Button type="submit" style={{borderRadius:"20px",width:"150px"}} variant="field" title="Надіслати"/>
+                <textarea name="text" className="modal__textarea" maxLength={255} required/>
+            </form>
         </section>
     </section>
 }

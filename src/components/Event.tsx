@@ -1,10 +1,18 @@
 import { decode } from "js-base64";
 import { ProtectedRouter } from "../services/protectrdRouter";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "./ui-components/Button";
+import { useEffect, useState } from "react";
 
 
 export const Event: React.FC<any> = ({ data,disabled }: any) => {
+  const isAuthorized = useSelector((state:any)=>state.client);
+  const [authorized,setAuthorized] = useState<boolean>(false);
+  useEffect(()=>{
+    setAuthorized(isAuthorized.email?true:false)
+  },[isAuthorized])
+  console.log(isAuthorized);
+  
   return (
     <div className="event">
       <div className="event__cover--wrapper">
@@ -13,7 +21,7 @@ export const Event: React.FC<any> = ({ data,disabled }: any) => {
       <div className="event__content">
         <h1 className="event__title">{data.nameOfEvent}</h1>
         <p className="event__description">{data.description}</p>
-        <ProtectedRouter children={<Controls data={data} disabled={disabled} />} />
+        {authorized?<Controls data={data} disabled={disabled} />:""}
       </div>
     </div>
   );
