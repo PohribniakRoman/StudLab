@@ -9,6 +9,7 @@ export const useNotification = () =>{
                 message,
                 id,
             }})
+            
             setTimeout(()=>{
                 dispatch({type:"REMOVE_NOTIFICATION",payload:{id}})
             },3000)

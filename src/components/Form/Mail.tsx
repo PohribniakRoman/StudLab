@@ -20,6 +20,7 @@ export const Mail:React.FC<any> = ({animation,updateAnimation,emailStore})=>{
         e.preventDefault();
         if(formData.current.email.trim()){
             (async ()=>{
+                try{
                 const isVerified = await (await fetch(ENDPOINTS.isVerified,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json()
                 emailStore(formData.current.email);
                 if(isVerified.message === "Student is verified"){
@@ -34,6 +35,9 @@ export const Mail:React.FC<any> = ({animation,updateAnimation,emailStore})=>{
                         notification.createNotification(resp.error);
                     }
                 }
+            }catch{
+                notification.createNotification("Server error happened!");
+            }
             })()
         }
     }}>

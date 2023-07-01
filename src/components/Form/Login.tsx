@@ -31,6 +31,7 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
         e.preventDefault();
         if(formData.current.email.trim() && formData.current.password.trim()){
             setLoading(true);
+            try{
             const resp = await(await fetch(ENDPOINTS.login,{method:"POST",body:JSON.stringify(formData.current), ...ENDPOINTS.params})).json();
             if(resp.token){
                 notification.createNotification("Wellcome back")
@@ -38,6 +39,9 @@ export const Login:React.FC<any> = ({animation,updateAnimation})=>{
                 navigate("/");
             }else{
                 notification.createNotification(resp.message)
+            }}catch{
+                notification.createNotification("Server error happened!")
+                setLoading(false);
             }
             setLoading(false);
         }

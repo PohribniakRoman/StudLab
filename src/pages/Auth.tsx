@@ -7,6 +7,7 @@ import { Mail } from "../components/Form/Mail";
 import { Code } from "../components/Form/Code";
 import { Login } from "../components/Form/Login";
 import { Logo } from "../components/menu/logo";
+import { NotificationContainer } from "../services/Notification";
 
 
 export const MailContext = createContext([""])
@@ -18,6 +19,8 @@ export const Auth: React.FC = (): React.ReactElement => {
   })
   const [email,setMail] = useState<string>("");
   return (
+    <>
+    <NotificationContainer/>
     <section className="auth">
       <div className="auth__container">
         <div className="auth__container--circle-red"></div>
@@ -40,5 +43,6 @@ export const Auth: React.FC = (): React.ReactElement => {
       <div className="auth__watermark">® All rights reserved 2023</div>
       <div className="auth__watermark">Developed by WebLab</div>
     </section>
+    </>
   );
 };
