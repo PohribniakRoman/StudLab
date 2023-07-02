@@ -13,12 +13,10 @@ export const notifications = (state:Notification[] = [],action:NotificationActio
     switch (action.type) {
         case "ADD_NOTIFICATION":{
             const newState = [...state.filter(message=>message.message !== action.payload.message),action.payload];
-            console.log(newState);
             return newState;
         }
         case "REMOVE_NOTIFICATION":{
             const newState = state.filter(message=>message.id !== action.payload.id);
-            console.log(newState,"DELETE");
             return newState;
         }
         default:{

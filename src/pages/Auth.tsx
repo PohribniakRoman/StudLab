@@ -14,7 +14,7 @@ export const MailContext = createContext([""])
 
 export const Auth: React.FC = (): React.ReactElement => {
   const [animation,setAnimation] = useState({
-    active:"mail",
+    active:"login",
     animateOut:"",
   })
   const [email,setMail] = useState<string>("");
