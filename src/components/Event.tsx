@@ -1,5 +1,4 @@
 import { decode } from "js-base64";
-import { ProtectedRouter } from "../services/protectrdRouter";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./ui-components/Button";
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ export const Event: React.FC<any> = ({ data,disabled }: any) => {
   useEffect(()=>{
     setAuthorized(isAuthorized.email?true:false)
   },[isAuthorized])
-  console.log(isAuthorized);
   
   return (
     <div className="event">

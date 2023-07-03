@@ -14,7 +14,6 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
     const dispatch = useDispatch();
     const firstRender = useRef(true);
     
-    
     useEffect(()=>{
         if(firstRender.current){
             firstRender.current = false;
@@ -48,7 +47,6 @@ export const ProtectedRouter:React.FC<ProtectedRouterChildren> = (props:Protecte
                 }
                 }catch(e){
                     setAuthorized(false)
-                    console.info(e);
                 }
             })();
         }

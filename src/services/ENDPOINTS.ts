@@ -17,6 +17,8 @@ export const ENDPOINTS = {
     editProfile:hostname+"student/edit",
     getComments:hostname+"comments/all",
     addComment:hostname+"comments/add",
+    likeComment:hostname+"comments/like-comment",
+    unlikeComment:hostname+"comments/unlike-comment",
     params:{
         mode: "cors" as RequestMode,
         headers:{"Content-Type":"application/json"}

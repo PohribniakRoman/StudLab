@@ -4,11 +4,13 @@ import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import {BsFillFlagFill} from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ENDPOINTS } from "../../services/ENDPOINTS";
 
 export const Comment = ({reportToggle,data}:any) =>{
     const dispatch= useDispatch();
     const navigate = useNavigate();
     const [liked,setLiked] = useState<boolean>(false);
+    console.log(data);
     const relocate = () =>{
         dispatch({type:"LOAD_CURRENT",payload:{}});
         navigate(`/profile/${data.student.firstName+"-"+data.student.lastName}`);
@@ -21,7 +23,16 @@ export const Comment = ({reportToggle,data}:any) =>{
                 {data.commentText}
             </p>
             <div className="modal__comments-report" onClick={()=>reportToggle(true)}><BsFillFlagFill/></div>
-            <div className={`modal__comments-like ${liked?"liked":""}`} onClick={()=>setLiked(!liked)}>{liked?<AiFillHeart/>:<AiOutlineHeart/>}</div>
+            <div className={`modal__comments-like ${liked?"liked":""}`} onClick={()=>{
+                setLiked(!liked)
+                if(!liked){
+                    fetch(ENDPOINTS.likeComment+"?commentId="+data.id,{method:"POST"});
+                    data.likes++;
+                }else{
+                    fetch(ENDPOINTS.unlikeComment+"?commentId="+data.id,{method:"POST"});
+                    data.likes--;
+                }
+            }}>{data.likes}{liked?<AiFillHeart/>:<AiOutlineHeart/>}</div>
         </div>
 </div>
 }

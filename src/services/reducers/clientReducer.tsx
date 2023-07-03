@@ -1,6 +1,6 @@
 let defaultState = {
-    name:"",
-    surname:"",
+    firstName:"",
+    lastName:"",
     email:"",
     id:"",
     token:"",
