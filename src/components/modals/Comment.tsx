@@ -2,15 +2,19 @@ import { decode } from "js-base64";
 import { useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import {BsFillFlagFill} from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ENDPOINTS } from "../../services/ENDPOINTS";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 export const Comment = ({reportToggle,data}:any) =>{
     const dispatch= useDispatch();
     const navigate = useNavigate();
-    const [liked,setLiked] = useState<boolean>(false);
+    const profile = useSelector((state:any)=>state.client);
     console.log(data);
+    const [liked,setLiked] = useState<boolean>(data.likedBy.filter((user:any)=>user.id === profile.id));
+
     const relocate = () =>{
         dispatch({type:"LOAD_CURRENT",payload:{}});
         navigate(`/profile/${data.student.firstName+"-"+data.student.lastName}`);
@@ -25,11 +29,16 @@ export const Comment = ({reportToggle,data}:any) =>{
             <div className="modal__comments-report" onClick={()=>reportToggle(true)}><BsFillFlagFill/></div>
             <div className={`modal__comments-like ${liked?"liked":""}`} onClick={()=>{
                 setLiked(!liked)
+                const token = cookies.get("token");
                 if(!liked){
-                    fetch(ENDPOINTS.likeComment+"?commentId="+data.id,{method:"POST"});
+                    fetch(ENDPOINTS.likeComment+"?commentId="+data.id,{method:"POST",headers:{
+                        "Content-Type":"application/json",
+                        "Authorization":`Bearer ${token}`}});
                     data.likes++;
                 }else{
-                    fetch(ENDPOINTS.unlikeComment+"?commentId="+data.id,{method:"POST"});
+                    fetch(ENDPOINTS.unlikeComment+"?commentId="+data.id,{method:"POST",headers:{
+                        "Content-Type":"application/json",
+                        "Authorization":`Bearer ${token}`}});
                     data.likes--;
                 }
             }}>{data.likes}{liked?<AiFillHeart/>:<AiOutlineHeart/>}</div>
