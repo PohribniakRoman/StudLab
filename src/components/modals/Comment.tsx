@@ -12,7 +12,6 @@ export const Comment = ({reportToggle,data}:any) =>{
     const dispatch= useDispatch();
     const navigate = useNavigate();
     const profile = useSelector((state:any)=>state.client);
-    console.log(data);
     const [liked,setLiked] = useState<boolean>(data.likedBy.filter((user:any)=>user.id === profile.id));
 
     const relocate = () =>{
