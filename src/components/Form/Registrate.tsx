@@ -12,16 +12,21 @@ const cookies = new Cookies();
 export const Registrate:React.FC<any> = ({animation,updateAnimation,email})=>{
     const formData = useRef({});
     const nodeName = "register";
+    const notification = useNotification()
     const isAway = animation.active === nodeName || animation.animateOut === nodeName;
     const slideIn = animation.active===nodeName;
     const slideOut = animation.animateOut===nodeName;
     return <form className={`auth__form--container-register ${isAway?"":"away"} ${slideOut?"slide-out":""} ${slideIn?"slide-in":""}`} onSubmit={async (e)=>{
         e.preventDefault();
-        const resp = await(await fetch(ENDPOINTS.authorize,{method:"POST",body:JSON.stringify({...formData.current,email}), ...ENDPOINTS.params})).json();
-        if(resp.token){
-            useNotification().createNotification(resp.message);
-            cookies.set("token",resp.token,{expires:new Date(new Date().getTime()+(1000*60*60*24*7))})
-        }        
+        try{
+            const resp = await(await fetch(ENDPOINTS.authorize,{method:"POST",body:JSON.stringify({...formData.current,email}), ...ENDPOINTS.params})).json();
+            if(resp.token){
+                useNotification().createNotification(resp.message);
+                cookies.set("token",resp.token,{expires:new Date(new Date().getTime()+(1000*60*60*24*7))})
+            }        
+        }catch{
+            notification.createNotification("Server error happened!");
+        }
     }}>
     <div className="auth__form--wrapper">
     <h1 className="auth__form--title">Реєстрація</h1>
